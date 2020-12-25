@@ -120,7 +120,6 @@ namespace DA3_ShopCake
 
         private void AddNewButton_Click(object sender, RoutedEventArgs e)
         {
-            //CategoryList.Visibility = Visibility.Collapsed;
             var addNewScreen = new NewAddingScreen();
             addNewScreen.SubmitHandler += AddNewScreen_SubmitHandler;
             addNewScreen.ExitHandler += AddNewScreen_ExitHandler;
@@ -145,8 +144,6 @@ namespace DA3_ShopCake
         private void Screen_LearnMoreHandler(string cakeCode)
         {
             var detailScreen = new CakeDetailScreen(cakeCode);
-            //MainScreen.Children.Clear();
-            //MainScreen.Children.Add(detailScreen);
             detailScreen.ExitHandler += DetailScreen_ExitHandler;
             detailScreen.UpdateHandler += DetailScreen_UpdateHandler;
             NavigateTo(detailScreen);
@@ -155,8 +152,6 @@ namespace DA3_ShopCake
         private void DetailScreen_UpdateHandler(string cakeCode)
         {
             var updateScreen = new UpdatingScreen(cakeCode);
-            //MainScreen.Children.Clear();
-            //MainScreen.Children.Add(updateScreen);
             updateScreen.ExitHandler += UpdateScreen_ExitHandler;
             updateScreen.SubmitHandler += UpdateScreen_SubmitHandler;
             NavigateTo(updateScreen);
@@ -173,20 +168,11 @@ namespace DA3_ShopCake
 
         private void UpdateScreen_ExitHandler()
         {
-            //var detailScreen = new CakeDetailScreen(cakeType, cakeCode);
-            //MainScreen.Children.Clear();
-            //MainScreen.Children.Add(detailScreen);
-            //detailScreen.ExitHandler += DetailScreen_ExitHandler;
-            //detailScreen.UpdateHandler += DetailScreen_UpdateHandler;
             NavigateBack();
         }
 
         private void DetailScreen_ExitHandler()
         {
-            //var screen = new CakeScreen(cakeType);
-            //MainScreen.Children.Clear();
-            //MainScreen.Children.Add(screen);
-            //screen.LearnMoreHandler += Screen_LearnMoreHandler;
             NavigateBack();
         }
 
@@ -205,8 +191,6 @@ namespace DA3_ShopCake
         {
             CategoryList.Visibility = Visibility.Collapsed;
             var screen = new StatisticScreen();
-            //MainScreen.Children.Clear();
-            //MainScreen.Children.Add(screen);
             SetRootScreen(screen);
         }
 
@@ -229,8 +213,6 @@ namespace DA3_ShopCake
         {
             int cakeType = (int)CakeType.BirthdayCake;
             var screen = new CakeScreen(cakeType);
-            //MainScreen.Children.Clear();
-            //MainScreen.Children.Add(screen);
             screen.LearnMoreHandler += Screen_LearnMoreHandler;
             SetRootScreen(screen);
         }
@@ -239,8 +221,6 @@ namespace DA3_ShopCake
         {
             int cakeType = (int)CakeType.Bread;
             var screen = new CakeScreen(cakeType);
-            //MainScreen.Children.Clear();
-            //MainScreen.Children.Add(screen);
             screen.LearnMoreHandler += Screen_LearnMoreHandler;
             SetRootScreen(screen);
         }
@@ -249,8 +229,6 @@ namespace DA3_ShopCake
         {
             int cakeType = (int)CakeType.CupCake;
             var screen = new CakeScreen(cakeType);
-            //MainScreen.Children.Clear();
-            //MainScreen.Children.Add(screen);
             screen.LearnMoreHandler += Screen_LearnMoreHandler;
             SetRootScreen(screen);
         }
@@ -259,8 +237,6 @@ namespace DA3_ShopCake
         {
             int cakeType = (int)CakeType.SlicedBread;
             var screen = new CakeScreen(cakeType);
-            //MainScreen.Children.Clear();
-            //MainScreen.Children.Add(screen);
             screen.LearnMoreHandler += Screen_LearnMoreHandler;
             SetRootScreen(screen);
         }
@@ -268,8 +244,6 @@ namespace DA3_ShopCake
         private void createBillButton_Click(object sender, RoutedEventArgs e)
         {
             var creatBillScreen = new CreatingBillScreen();
-            //MainScreen.Children.Clear();
-            //MainScreen.Children.Add(creatBillScreen);
             creatBillScreen.ExitHandler += CreatBillScreen_ExitHandler;
             creatBillScreen.SubmitHandler += CreatBillScreen_SubmitHandler;
             NavigateTo(creatBillScreen);

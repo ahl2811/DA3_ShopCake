@@ -259,7 +259,7 @@ namespace DA3_ShopCake
 
         private void Screen_LearnMoreHandler(string cakeCode)
         {
-            var detailScreen = new CakeDetailScreen(cakeCode);
+            var detailScreen = new CakeDetailScreen("1");
             detailScreen.ExitHandler += DetailScreen_ExitHandler;
             detailScreen.UpdateHandler += DetailScreen_UpdateHandler;
             NavigateTo(detailScreen);

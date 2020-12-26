@@ -3,24 +3,26 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 
-namespace ConsoleApp2.db
+namespace DA3_ShopCake.db
 {
-    class CakeDaoImp : CakeDao
+    class CakeImageDaoImp : CakeImageDao
     {
-        
-        private List<Cake> cakes;
 
-        public CakeDaoImp()
+        private List<CakeImage> cakeImages;
+
+        public CakeImageDaoImp()
         {
-            cakes = new List<Cake>();
+            cakeImages = new List<CakeImage>();
 
             string strConn = $"Server=localhost; Database=QLTiemBanh; Trusted_Connection=True;";
             SqlConnection sqlConnection = new SqlConnection(strConn);
             SqlCommand sqlCommand = new SqlCommand();
-            String query = "select * from CAKE";
+            String query = "select * from CAKEIMAGE";
 
             try
             {
@@ -32,15 +34,12 @@ namespace ConsoleApp2.db
                 SqlDataReader reader = sqlCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    Cake cake = new Cake();
-                    
-                    cake.Id = reader[0].ToString();
-                    cake.CatalogueId = reader[1].ToString();
-                    cake.Name = reader[2].ToString();
-                    cake.Price = Int32.Parse(reader[3].ToString());
-                    cake.Description = reader[4].ToString();
+                    CakeImage cakeImage = new CakeImage();
 
-                    cakes.Add(cake);
+                    cakeImage.CakeId = reader[0].ToString();
+                    cakeImage.Image = reader[1].ToString();
+
+                    cakeImages.Add(cakeImage);
                 }
                 sqlConnection.Close();
 
@@ -51,32 +50,28 @@ namespace ConsoleApp2.db
                 throw ex;
             }
         }
-        public void deleteCake(Cake cake)
+        public void deleteCakeImage(CakeImage cakeImage)
         {
-
-            String delQuery = $"DELETE FROM CAKE WHERE CAKE_ID = '{cake.Id}';";
+            String delQuery = $"DELETE FROM CAKEIMAGE WHERE CAKE_ID = '{cakeImage.CakeId}';";
             DatabaseHelper.executeQuery(delQuery);
         }
 
-        public List<Cake> GetCakes()
+        public List<CakeImage> GetCakeImages()
         {
-            return cakes;
+            return cakeImages;
         }
 
-        public void insertCake(Cake cake)
+        public void insertCakeImage(CakeImage cakeImage)
         {
             using (SqlConnection connection = new SqlConnection("Server=localhost; Database=QLTiemBanh; Trusted_Connection=True;"))
             {
-                String query = "INSERT INTO dbo.CAKE (CAKE_ID, CATALOGUE_ID, CAKE_NAME, PRICE, DESCRIPTION)" +
-                " VALUES (@Id,@CatalogueId,@Name,@Price,@Description)";
+                String query = "INSERT INTO dbo.CAKEIMAGE (CAKE_ID, IMAGE)" +
+                " VALUES (@CakeId,@Image)";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@Id", cake.Id);
-                    command.Parameters.AddWithValue("@CatalogueId", cake.CatalogueId);
-                    command.Parameters.AddWithValue("@Name", cake.Name);
-                    command.Parameters.AddWithValue("@Price", cake.Price);
-                    command.Parameters.AddWithValue("@Description", cake.Description);
+                    command.Parameters.AddWithValue("@CakeId", cakeImage.CakeId);
+                    command.Parameters.AddWithValue("@Image", cakeImage.Image);
 
                     connection.Open();
                     int result = command.ExecuteNonQuery();
@@ -88,14 +83,5 @@ namespace ConsoleApp2.db
                 }
             }
         }
-
-        public void updateCake(Cake cake)
-        {
-            /*
-CAKE: CAKE_ID (PK), CATALOGUE_ID (FK), CAKE_NAME, PRICE (INT), IMAGE (TEXT)
- */
-        }
-
     }
-
 }

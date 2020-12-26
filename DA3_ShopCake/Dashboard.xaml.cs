@@ -82,7 +82,7 @@ namespace DA3_ShopCake
                 "CATALOGUE_ID varchar(6)," +
                 "CAKE_NAME nvarchar(100)," +
                 "PRICE int," +
-                "IMAGE varchar(200)," +
+                "DESCRIPTION nvarchar(200)," +
                 "primary key(CAKE_ID))";
             DatabaseHelper.executeQuery(query);
 
@@ -106,15 +106,24 @@ namespace DA3_ShopCake
                 "PHONE varchar(11)," +
                 "primary key(CUSTOMER_ID))";
             DatabaseHelper.executeQuery(query);
+            /*CAKEIMAGE: CAKE_ID (PK), IMAGE(PK)*/
+
+            query = "create table CAKEIMAGE(" +
+                "CAKE_ID varchar(6)," +
+                "IMAGE varchar(200)," +
+                "primary key(CAKE_ID, IMAGE))";
+            DatabaseHelper.executeQuery(query);
         }
 
         /*
          * QLTiemBanh
          * CATALOGUE: ID (PK), CATALOGUE _NAME (NVARCHAR(50))
-        CAKE: CAKE_ID (PK), CATALOGUE_ID (FK), CAKE_NAME, PRICE (INT), IMAGE (TEXT)
+        CAKE: CAKE_ID (PK), CATALOGUE_ID (FK), CAKE_NAME, PRICE (INT), DESCRIPTION (TEXT)
         BILL: BILL_ID(PK), CUSTOMER_ID (FK), SALE_DATE
         DETAIL_BILL: BILL_ID(FK), CAKE_ID (FK), COUNT
         CUSTOMER: CUSTOMER_ID (PK), CUSTOMER_NAME, PHONE
+        CAKEIMAGE: CAKE_ID (PK, FK), IMAGE(PK)
+
         */
         private void addForeignKey()
         {
@@ -131,7 +140,9 @@ namespace DA3_ShopCake
 
             query = "alter table DETAIL_BILL add constraint fk_cake_id foreign key(CAKE_ID) references CAKE(CAKE_ID)";
             DatabaseHelper.executeQuery(query);
-
+            
+            query = "alter table CAKEIMAGE add constraint fk_cake_id_2 foreign key(CAKE_ID) references CAKE(CAKE_ID)";
+            DatabaseHelper.executeQuery(query);
         }
 
         private void SetRootScreen(UserControl screen)

@@ -1,7 +1,9 @@
 ﻿using ConsoleApp2.db;
+using DA3_ShopCake.db;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,6 @@ using System.Windows.Shapes;
 
 namespace DA3_ShopCake.Screens
 {
-    /// <summary>
-    /// Interaction logic for NewAddingScreen.xaml
-    /// </summary>
     public partial class NewAddingScreen : UserControl
     {
         public delegate void DelegateExit();
@@ -30,6 +29,7 @@ namespace DA3_ShopCake.Screens
         public event DelegateExit SubmitHandler;
         Cake newCake;
         CakeDaoImp cakeDaoImp;
+        ObservableCollection<CakeImage> cakeImages;
 
 
         public NewAddingScreen()
@@ -40,7 +40,8 @@ namespace DA3_ShopCake.Screens
 
             newCake = new Cake();
             newCake.Id = (cakeDaoImp.GetCakes().Count() + 1).ToString();
-
+            cakeImages = new ObservableCollection<CakeImage>();
+            lbImages.ItemsSource = cakeImages;
             txtId.Text = newCake.Id;
         }
 
@@ -52,11 +53,11 @@ namespace DA3_ShopCake.Screens
         private void submitButton_Click(object sender, RoutedEventArgs e)
         {
 
-            if(txtCakeName.Text == "")
+            if (txtCakeName.Text == "")
             {
                 MessageBox.Show("Bạn phải nhập tên bánh kem");
                 return;
-            } else if(txtPrice.Text == "")
+            } else if (txtPrice.Text == "")
             {
                 MessageBox.Show("Bạn phải nhập giá sản phẩm");
                 return;
@@ -64,9 +65,18 @@ namespace DA3_ShopCake.Screens
 
             newCake.Name = txtCakeName.Text;
             newCake.Price = Int32.Parse(txtPrice.Text);
-            newCake.Image = imgCake.Source.ToString();
+            newCake.Description = txtDescription.Text;
             newCake.CatalogueId = (cbCatalogue.SelectedIndex + 1).ToString();
             cakeDaoImp.insertCake(newCake);
+
+            if (cakeImages.Count() > 0)
+            {
+                CakeImageDaoImp cakeImageDao = new CakeImageDaoImp();
+                foreach(CakeImage cakeImage in cakeImages)
+                {
+                    cakeImageDao.insertCakeImage(cakeImage);
+                }
+            }
 
             SubmitHandler?.Invoke();
         }
@@ -96,10 +106,7 @@ namespace DA3_ShopCake.Screens
                     var currentFolder = AppDomain.CurrentDomain.BaseDirectory;
                     File.Copy(file, $"{currentFolder}Assets\\Images\\{newName}");
 
-                    newCake.Image = $"{currentFolder}Assets\\Images\\{newName}";
-
-                    Uri uri = new Uri(newCake.Image, UriKind.RelativeOrAbsolute);
-                    imgCake.Source = new BitmapImage(uri);
+                    cakeImages.Add(new CakeImage(newCake.Id, $"{currentFolder}Assets\\Images\\{newName}"));
                 }
             }
         }

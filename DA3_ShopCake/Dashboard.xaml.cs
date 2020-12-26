@@ -1,4 +1,5 @@
 ﻿using DA3_ShopCake.Screens;
+using dbforproject3.db.DbHelper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,105 @@ namespace DA3_ShopCake
         {
             InitializeComponent();
             showDefaultScreen();
+            createDatabaseIfNotExist();
+        }
+        private void createDatabaseIfNotExist()
+        {
+
+            DatabaseHelper.Database = "master";
+            String db = "QLTiemBanh";
+            String query = "";
+            String con = $"Server=localhost; Database= master; Trusted_Connection=True;";
+            bool isCreated = DatabaseHelper.isDatabaseExists(con, db);
+
+            if (!isCreated)
+            {
+                query = "create database QLTiemBanh";
+                DatabaseHelper.executeQuery(query);
+
+                DatabaseHelper.Database = db;
+
+                query = "use QLTiemBanh";
+                DatabaseHelper.executeQuery(query);
+
+                createDefaultTable();
+                addForeignKey();
+                insertDefaultDatabase();
+            }
+
+            DatabaseHelper.Database = db;
+        }
+
+        private void insertDefaultDatabase()
+        {
+            ;
+        }
+
+        private void createDefaultTable()
+        {
+            String query = "";
+
+            query = "create table CATALOGUE(" +
+                                "ID varchar(6)," +
+                                "CATALOGUE_NAME nvarchar(50)," +
+                                "primary key(ID))";
+            DatabaseHelper.executeQuery(query);
+
+            query = "create table CAKE(" +
+                "CAKE_ID varchar(6)," +
+                "CATALOGUE_ID varchar(6)," +
+                "CAKE_NAME nvarchar(100)," +
+                "PRICE int," +
+                "IMAGE varchar(200)," +
+                "primary key(CAKE_ID))";
+            DatabaseHelper.executeQuery(query);
+
+            query = "create table BILL(" +
+                "BILL_ID varchar(6)," +
+                "CUSTOMER_ID varchar(6)," +
+                "SALE_DATE varchar(200)," +
+                "primary key(BILL_ID))";
+            DatabaseHelper.executeQuery(query);
+
+            query = "create table DETAIL_BILL(" +
+                "BILL_ID varchar(6)," +
+                "CAKE_ID varchar(6)," +
+                "COUNT int," +
+                "primary key(BILL_ID, CAKE_ID))";
+            DatabaseHelper.executeQuery(query);
+
+            query = "create table CUSTOMER(" +
+                "CUSTOMER_ID varchar(6)," +
+                "CUSTOMER_NAME nvarchar(200)," +
+                "PHONE varchar(11)," +
+                "primary key(CUSTOMER_ID))";
+            DatabaseHelper.executeQuery(query);
+        }
+
+        /*
+         * QLTiemBanh
+         * CATALOGUE: ID (PK), CATALOGUE _NAME (NVARCHAR(50))
+        CAKE: CAKE_ID (PK), CATALOGUE_ID (FK), CAKE_NAME, PRICE (INT), IMAGE (TEXT)
+        BILL: BILL_ID(PK), CUSTOMER_ID (FK), SALE_DATE
+        DETAIL_BILL: BILL_ID(FK), CAKE_ID (FK), COUNT
+        CUSTOMER: CUSTOMER_ID (PK), CUSTOMER_NAME, PHONE
+        */
+        private void addForeignKey()
+        {
+            String query = "";
+
+            query = "alter table CAKE add constraint fk_catalogue foreign key(CATALOGUE_ID) references CATALOGUE(ID)";
+            DatabaseHelper.executeQuery(query);
+
+            query = "alter table BILL add constraint fk_customer_id foreign key(CUSTOMER_ID) references CUSTOMER(CUSTOMER_ID)";
+            DatabaseHelper.executeQuery(query);
+
+            query = "alter table DETAIL_BILL add constraint fk_bill_id foreign key(BILL_ID) references BILL(BILL_ID)";
+            DatabaseHelper.executeQuery(query);
+
+            query = "alter table DETAIL_BILL add constraint fk_cake_id foreign key(CAKE_ID) references CAKE(CAKE_ID)";
+            DatabaseHelper.executeQuery(query);
+
         }
 
         private void SetRootScreen(UserControl screen)

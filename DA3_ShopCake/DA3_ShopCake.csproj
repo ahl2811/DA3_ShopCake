@@ -55,6 +55,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="db\Bill.cs" />
+    <Compile Include="db\BillDao.cs" />
+    <Compile Include="db\BillDaoImp.cs" />
+    <Compile Include="db\Cake.cs" />
+    <Compile Include="db\CakeDao.cs" />
+    <Compile Include="db\CakeDaoImp.cs" />
+    <Compile Include="db\Catalogue.cs" />
+    <Compile Include="db\CatalogueDao.cs" />
+    <Compile Include="db\CatalogueDaoImp.cs" />
+    <Compile Include="db\Customer.cs" />
+    <Compile Include="db\CustomerDao.cs" />
+    <Compile Include="db\CustomerDaoImp.cs" />
+    <Compile Include="db\DatabaseHelper.cs" />
+    <Compile Include="db\DetailBill.cs" />
+    <Compile Include="db\DetailBillDao.cs" />
+    <Compile Include="db\DetailDaoImp.cs" />
     <Compile Include="Screens\CakeDetailScreen.xaml.cs">
       <DependentUpon>CakeDetailScreen.xaml</DependentUpon>
     </Compile>

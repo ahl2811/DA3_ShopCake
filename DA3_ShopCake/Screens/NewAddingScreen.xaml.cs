@@ -39,7 +39,7 @@ namespace DA3_ShopCake.Screens
             cakeDaoImp = new CakeDaoImp();
 
             newCake = new Cake();
-            newCake.Id = (cakeDaoImp.GetCakes().Count() + 1).ToString();
+            newCake.Id = cakeDaoImp.getNextId();
             cakeImages = new ObservableCollection<CakeImage>();
             lbImages.ItemsSource = cakeImages;
             txtId.Text = newCake.Id;

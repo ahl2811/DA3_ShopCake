@@ -1,8 +1,10 @@
-﻿using dbforproject3.db.DbHelper;
+﻿using DA3_ShopCake.utils;
+using dbforproject3.db.DbHelper;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 using System.Windows;
 
@@ -82,6 +84,36 @@ namespace ConsoleApp2.db
                     }
                 }
             }
+        }
+
+
+        public String getNextId()
+        {
+            String newId = "";
+            bool isFoundNewId = false;
+
+            while (!isFoundNewId)
+            {
+                newId = StringHelper.RandomString(6);
+                if (bills.Count() == 0)
+                {
+                    isFoundNewId = true;
+                }
+                for (int i = 0; i < bills.Count(); i++)
+                {
+                    if (bills[i].Id.Equals(newId))
+                    {
+                        break;
+                    }
+                    if (i == bills.Count() - 1)
+                    {
+                        isFoundNewId = true;
+                        break;
+                    }
+                }
+            }
+
+            return newId;
         }
     }
 }

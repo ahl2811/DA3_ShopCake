@@ -1,8 +1,10 @@
-﻿using dbforproject3.db.DbHelper;
+﻿using DA3_ShopCake.utils;
+using dbforproject3.db.DbHelper;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 using System.Windows;
 
@@ -94,6 +96,89 @@ namespace ConsoleApp2.db
             /*
 CAKE: CAKE_ID (PK), CATALOGUE_ID (FK), CAKE_NAME, PRICE (INT), IMAGE (TEXT)
  */
+            string strConn = $"Server=localhost; Database=QLTiemBanh; Trusted_Connection=True;";
+            SqlConnection sqlConnection = new SqlConnection(strConn);
+            SqlCommand sqlCommand = new SqlCommand();
+            String query = "select * from CAKE";
+
+            sqlCommand.CommandText = query;
+            sqlCommand.CommandType = CommandType.Text;
+            sqlCommand.Connection = sqlConnection;
+            sqlConnection.Open();
+
+            try
+            {
+                string sql = "Update CAKE set CAKE_NAME = @Name, PRICE = @Price, DESCRIPTION = @Description where CAKE_ID = @Id";
+
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.Connection = sqlConnection;
+                cmd.CommandText = sql;
+
+                cmd.Parameters.Add("@Name", SqlDbType.NVarChar).Value = cake.Name;
+                cmd.Parameters.Add("@Price", SqlDbType.Int).Value = cake.Price;
+                cmd.Parameters.Add("@Description", SqlDbType.NVarChar).Value = cake.Description;
+                cmd.Parameters.Add("@Id", SqlDbType.VarChar).Value = cake.Id;
+
+                int rowCount = cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e);
+                Console.WriteLine(e.StackTrace);
+            }
+            finally
+            {
+                sqlConnection.Close();
+                sqlConnection.Dispose();
+                sqlConnection = null;
+            }
+        }
+
+        public Cake getCakeById(String id)
+        {
+            Cake result = null;
+
+            foreach (Cake cake in cakes)
+            {
+                if (cake.Id.Equals(id))
+                {
+                    result = cake;
+                    break;
+                }
+            }
+
+            return result;
+        }
+
+        public String getNextId()
+        {
+            String newId = "";
+            bool isFoundNewId = false;
+
+            while (!isFoundNewId)
+            {
+                newId = StringHelper.RandomString(6);
+                if (cakes.Count() == 0)
+                {
+                    isFoundNewId = true;
+                }
+                for (int i = 0; i < cakes.Count(); i++)
+                {
+                    if (cakes[i].Id.Equals(newId))
+                    {
+                        break;
+                    }
+                    if (i == cakes.Count() - 1)
+                    {
+                        isFoundNewId = true;
+                        break;
+                    }
+                }
+            }
+
+            return newId;
         }
 
     }

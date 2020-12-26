@@ -7,8 +7,184 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock FontSize="30" Foreground="Orange" Margin="200" Text="Update Screen"/>
-        <Button x:Name="exitUpdateButton" Width="50" Height="30" Content="Close" Click="exitUpdateButton_Click"/>
-        <Button x:Name="submitButton" Width="80" Height="40" Content="Submit" Click="submitButton_Click" HorizontalAlignment="Right"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top">
+            <ListBox PreviewMouseDown="PlaceholdersListBox_OnPreviewMouseDown" 
+                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                     MinHeight="250" MaxHeight="300"
+                     HorizontalAlignment="Left" 
+                     Margin="20,0,0,0" Background="#E8E8E8"
+                     BorderThickness="0" BorderBrush="Transparent"
+                     Name="lbImages" HorizontalContentAlignment="Stretch">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation='Horizontal'/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image MaxHeight="75"
+                                   MaxWidth="125"
+                                   Source="{Binding Image}"></Image>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button
+                Margin="0,30,0,0"
+                    Click="onAddNewImage"
+                     BorderThickness="0"
+                     HorizontalAlignment="Center"
+                     Foreground="White"
+                     Height="50"
+                     Width="120"
+                     HorizontalContentAlignment="Center"
+                     VerticalContentAlignment="Center"
+                    >
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#0000FF" Offset="0.1"/>
+                        <GradientStop Color="#66CCFF" Offset="0.8"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.Content>
+                    <Grid>
+                        <TextBlock Text="Thêm ảnh"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontWeight="Regular"
+                                                       FontSize="18"
+                                           />
+                    </Grid>
+                </Button.Content>
+
+            </Button>
+        </StackPanel>
+
+        <ScrollViewer  Grid.Row="0" Grid.Column="1">
+            <StackPanel Margin="0,20,0,0" Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Content="Tên bánh:"  Foreground="Orange" FontSize="24"></Label>
+                    <TextBox Height="30" Margin="20,5,0,0" HorizontalAlignment="Left"
+                     MinWidth="200" Name="txtCakeName"
+                     Foreground="Olive" FontSize="22"
+                     MaxWidth="4000"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Content="ID:"  Foreground="Orange" FontSize="24"></Label>
+                    <TextBlock Height="30" Margin="20,5,0,0" HorizontalAlignment="Left"
+                     MinWidth="200" Name="txtId"
+                     Foreground="Olive" FontSize="22"
+                     MaxWidth="4000"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Content="Giá:"  Foreground="Orange" FontSize="24"></Label>
+                    <TextBox Height="30" Margin="20,5,0,0" HorizontalAlignment="Left"
+                     MinWidth="200" Name="txtPrice"
+                     Foreground="Olive" FontSize="22"
+                     MaxWidth="4000"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="0,10,0,0">
+                    <Label Content="Mô tả:"  Foreground="Orange" FontSize="24"></Label>
+                    <TextBox Height="30" Margin="20,5,0,0" HorizontalAlignment="Left"
+                      Name="txtDescription"
+                     Foreground="Olive" FontSize="22" MinHeight="70"
+                         MinLines="4" MinWidth="200"></TextBox>
+                </StackPanel>
+                
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel HorizontalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <Button
+                    Click="exitUpdateButton_Click"
+                     Margin="0,0,75,0"
+                     BorderThickness="0"
+                     
+                     Foreground="White"
+                     Height="50"
+                     Width="120"
+                     HorizontalContentAlignment="Center"
+                     VerticalContentAlignment="Center"
+                    >
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#848484" Offset="0.1"/>
+                        <GradientStop Color="#DCDCDC" Offset="0.8"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.Content>
+                    <Grid>
+                        <TextBlock Text="Hủy"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontWeight="Regular"
+                                                       FontSize="18"
+                                           />
+                    </Grid>
+                </Button.Content>
+
+            </Button>
+
+            <Button
+                    Click="submitButton_Click"
+                     Margin="15,0"
+                     BorderThickness="0"
+                     
+                     Foreground="White"
+                     Height="50"
+                     Width="120"
+                     HorizontalContentAlignment="Center"
+                     VerticalContentAlignment="Center"
+                    >
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#1f8545" Offset="0.1"/>
+                        <GradientStop Color="#7CFC04" Offset="0.8"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.Content>
+                    <Grid>
+                        <TextBlock Text="Cập nhật"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontWeight="Regular"
+                                                       FontSize="18"
+                                           />
+                    </Grid>
+                </Button.Content>
+
+            </Button>
+        </StackPanel>
     </Grid>
 </UserControl>

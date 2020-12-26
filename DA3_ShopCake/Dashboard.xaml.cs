@@ -159,6 +159,8 @@ namespace DA3_ShopCake
 
         private void NavigateTo(UserControl screen)
         {
+            rightTab.Visibility = Visibility.Hidden;
+
             ScreenStack.Push(screen);
             MainScreen.Children.Clear();
             MainScreen.Children.Add(screen);
@@ -166,6 +168,8 @@ namespace DA3_ShopCake
 
         private bool NavigateBackAndUpdateData(UserControl screen)
         {
+            rightTab.Visibility = Visibility.Visible;
+
             if (ScreenStack.Count <= 1)
             {
                 return false;
@@ -178,6 +182,8 @@ namespace DA3_ShopCake
 
         private bool NavigateBack()
         {
+            rightTab.Visibility = Visibility.Visible;
+
             if (ScreenStack.Count <= 1)
             {
                 return false;
@@ -259,7 +265,8 @@ namespace DA3_ShopCake
 
         private void Screen_LearnMoreHandler(string cakeCode)
         {
-            var detailScreen = new CakeDetailScreen("1");
+            Cake cake = new CakeDaoImp().GetCakes()[0];
+            var detailScreen = new CakeDetailScreen(cake.Id);
             detailScreen.ExitHandler += DetailScreen_ExitHandler;
             detailScreen.UpdateHandler += DetailScreen_UpdateHandler;
             NavigateTo(detailScreen);

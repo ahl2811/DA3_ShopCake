@@ -7,8 +7,103 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock FontSize="30" Foreground="Orange" Margin="200" Text="Creat Bill Screen"/>
-        <Button x:Name="exitButton" Width="50" Height="30" Content="Close" Click="exitButton_Click"/>
-        <Button x:Name="submitButton" Width="80" Height="40" Content="Submit" Click="submitButton_Click" HorizontalAlignment="Right"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="20,20,0,0" Orientation="Vertical" Grid.Row="0" Grid.Column="0">
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Label Content="Tên khách hàng:"  Foreground="Orange" FontSize="24"></Label>
+                <TextBox Height="30" Margin="20,5,0,0" HorizontalAlignment="Left"
+                     MinWidth="200" Name="txtCustomerName"
+                     Foreground="Olive" FontSize="22"
+                     MaxWidth="4000"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Label Content="Mã khách hàng:"  Foreground="Orange" FontSize="24"></Label>
+                <TextBlock Height="30" Margin="20,5,0,0" HorizontalAlignment="Left"
+                     MinWidth="200" Name="txtCustomorId"
+                     Foreground="Olive" FontSize="22"
+                     MaxWidth="4000"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Label Content="Số điện thoại:"  Foreground="Orange" FontSize="24"></Label>
+                <TextBox Height="30" Margin="20,5,0,0" HorizontalAlignment="Left"
+                     MinWidth="200" Name="txtPhone"
+                     Foreground="Olive" FontSize="22"
+                     MaxWidth="4000"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Label Content="Ngày tạo:"  Foreground="Orange" FontSize="24"></Label>
+                <TextBlock Height="30" Margin="20,5,0,0" HorizontalAlignment="Left"
+                     MinWidth="200" Name="txtSaleDate"
+                     Foreground="Olive" FontSize="22"
+                     MaxWidth="4000"></TextBlock>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical"
+                    Grid.Column="1" Grid.Row="0"
+                    >
+            <TextBox Text="search here"/>
+            <ListBox HorizontalAlignment="Left" Margin="20,10,0,0"
+                     Background="#E8E8E8"
+                     BorderThickness="2" BorderBrush="Orange"
+                     Name="lbImages" 
+                     HorizontalContentAlignment="Stretch"
+                     MinHeight="100" MaxHeight="300" MinWidth="350">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image MaxHeight="75" MaxWidth="125"
+                                   Source="{Binding Image}">
+                                
+                            </Image>
+                            <TextBlock x:Name="txtCakeName"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <StackPanel Margin="0,10,0,0" HorizontalAlignment="Center" Orientation="Horizontal">
+                <Label Margin="0,0,100,0" FontSize="16" Content="Tên bánh" Foreground="Orange"/>
+                <Label FontSize="16" Content="Số lượng" Foreground="Orange"/>
+            </StackPanel>
+            <ListBox HorizontalAlignment="Left" Margin="20,0,0,0"
+                     Background="#E8E8E8"
+                     BorderThickness="2" BorderBrush="Orange"
+                     Name="lbSelectedCake" 
+                     HorizontalContentAlignment="Stretch"
+                     MinHeight="300" MaxHeight="300" MinWidth="350">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image MaxHeight="75" MaxWidth="125"
+                                   Source="{Binding Image}">
+
+                            </Image>
+                            <TextBlock x:Name="txtCakeName"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+            <Button x:Name="exitButton" Width="50" Height="30" Content="Close" Click="exitButton_Click"/>
+            <Button x:Name="submitButton" Width="80" Height="40" Content="Submit" Click="submitButton_Click" HorizontalAlignment="Right"/>
+        </StackPanel>
+        
     </Grid>
 </UserControl>

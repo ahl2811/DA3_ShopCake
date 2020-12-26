@@ -161,7 +161,7 @@ namespace DA3_ShopCake {
         #line hidden
         
         
-        #line 493 "..\..\Dashboard.xaml"
+        #line 484 "..\..\Dashboard.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Grid MainScreen;
         
@@ -169,15 +169,15 @@ namespace DA3_ShopCake {
         #line hidden
         
         
-        #line 498 "..\..\Dashboard.xaml"
+        #line 771 "..\..\Dashboard.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.Grid rightTab;
+        internal System.Windows.Controls.Button RefreshBillButton;
         
         #line default
         #line hidden
         
         
-        #line 1083 "..\..\Dashboard.xaml"
+        #line 818 "..\..\Dashboard.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button createBillButton;
         
@@ -353,7 +353,7 @@ namespace DA3_ShopCake {
             return;
             case 17:
             
-            #line 449 "..\..\Dashboard.xaml"
+            #line 448 "..\..\Dashboard.xaml"
             ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.AddNewButton_Click);
             
             #line default
@@ -363,12 +363,18 @@ namespace DA3_ShopCake {
             this.MainScreen = ((System.Windows.Controls.Grid)(target));
             return;
             case 19:
-            this.rightTab = ((System.Windows.Controls.Grid)(target));
+            this.RefreshBillButton = ((System.Windows.Controls.Button)(target));
+            
+            #line 771 "..\..\Dashboard.xaml"
+            this.RefreshBillButton.Click += new System.Windows.RoutedEventHandler(this.RefreshBillButton_Click);
+            
+            #line default
+            #line hidden
             return;
             case 20:
             this.createBillButton = ((System.Windows.Controls.Button)(target));
             
-            #line 1083 "..\..\Dashboard.xaml"
+            #line 818 "..\..\Dashboard.xaml"
             this.createBillButton.Click += new System.Windows.RoutedEventHandler(this.createBillButton_Click);
             
             #line default

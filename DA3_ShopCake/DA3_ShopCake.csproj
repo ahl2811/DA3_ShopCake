@@ -197,5 +197,11 @@
   <ItemGroup>
     <Resource Include="Assets\Images\bread.jpeg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\refresh.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

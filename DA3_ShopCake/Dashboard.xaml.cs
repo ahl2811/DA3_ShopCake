@@ -382,5 +382,10 @@ namespace DA3_ShopCake
         {
             NavigateBack();
         }
+
+        private void RefreshBillButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

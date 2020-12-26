@@ -6,9 +6,121 @@
              xmlns:local="clr-namespace:DA3_ShopCake.Screens"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock FontSize="30" Foreground="Orange" Margin="200" Text="Addnew Screen"/>
-        <Button x:Name="exitButton" Width="50" Height="30" Content="Close" Click="exitButton_Click"/>
-        <Button x:Name="submitButton" Width="80" Height="40" Content="Submit" Click="submitButton_Click" HorizontalAlignment="Right"/>
-    </Grid>
+    <StackPanel Orientation="Vertical" Margin="20,20,0,0">
+        
+        <TextBlock HorizontalAlignment="Center" FontSize="44" Foreground="Orange" Text="Tạo mới món ăn"/>
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+            <Label Content="ID:"  Foreground="Orange" FontSize="24"></Label>
+            <TextBlock Height="30" Margin="20,5,0,0" HorizontalAlignment="Left"
+                     MinWidth="200" Name="txtId"
+                     Foreground="Olive" FontSize="22"
+                     MaxWidth="4000"></TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+            <Label Content="Tên bánh:"  Foreground="Orange" FontSize="24"></Label>
+            <TextBox Height="30" Margin="20,5,0,0" HorizontalAlignment="Left"
+                     MinWidth="200" Name="txtCakeName"
+                     Foreground="Olive" FontSize="18"
+                     MaxWidth="4000"></TextBox>
+            <Label Content="(*)" Foreground="Red"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+            <Label Content="Giá (VNĐ):"  Foreground="Orange" FontSize="24"></Label>
+            <TextBox Height="30" Margin="20,5,0,0" HorizontalAlignment="Left"
+                     MinWidth="200" Name="txtPrice"
+                     Foreground="Olive" FontSize="18"
+                     MaxWidth="4000"
+                     PreviewTextInput="NumberValidationTextBox"></TextBox>
+            <Label Content="(*)" Foreground="Red"/>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+            <Label Content="Loại bánh:"  Foreground="Orange" FontSize="24"></Label>
+            <ComboBox VerticalAlignment="Center" Height="30" Name="cbCatalogue" FontSize="16" Foreground="Orange" Margin="20,5,0,0" Width="150" HorizontalAlignment="Left">
+                <ComboBoxItem IsSelected="True">Bánh sinh nhật</ComboBoxItem>
+                <ComboBoxItem >Bánh mì</ComboBoxItem>
+                <ComboBoxItem >Bánh cupcake</ComboBoxItem>
+                <ComboBoxItem >Bánh sandwich</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+            <Label Content="Hình ảnh:"  Foreground="Orange" FontSize="24"></Label>
+            <Button Click="OnAddNewImage" Margin="20,0,0,0" MinWidth="100" MaxHeight="35" Name="btnFetch" Content="Fetch" BorderBrush="Orange" Foreground="Orange"/>
+        </StackPanel>
+
+        <Image Margin="0,5,0,5" x:Name="imgCake" MinHeight="50" MaxHeight="75"/>
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Center">
+            <Button
+                    Click="exitButton_Click"
+                     Margin="0,0,75,0"
+                     BorderThickness="0"
+                     
+                     Foreground="White"
+                     Height="50"
+                     Width="120"
+                     HorizontalContentAlignment="Center"
+                     VerticalContentAlignment="Center"
+                    >
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#848484" Offset="0.1"/>
+                        <GradientStop Color="#DCDCDC" Offset="0.8"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.Content>
+                    <Grid>
+                        <TextBlock Text="Hủy"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontWeight="Regular"
+                                                       FontSize="18"
+                                           />
+                    </Grid>
+                </Button.Content>
+
+            </Button>
+            
+            <Button
+                    Click="submitButton_Click"
+                     Margin="15,0"
+                     BorderThickness="0"
+                     
+                     Foreground="White"
+                     Height="50"
+                     Width="120"
+                     HorizontalContentAlignment="Center"
+                     VerticalContentAlignment="Center"
+                    >
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#1f8545" Offset="0.1"/>
+                        <GradientStop Color="#7CFC04" Offset="0.8"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.Content>
+                    <Grid>
+                        <TextBlock Text="Hoàn tất"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontWeight="Regular"
+                                                       FontSize="18"
+                                           />
+                    </Grid>
+                </Button.Content>
+
+            </Button>
+        </StackPanel>
+    </StackPanel>
 </UserControl>

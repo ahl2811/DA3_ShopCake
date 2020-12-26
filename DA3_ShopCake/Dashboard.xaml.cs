@@ -1,4 +1,5 @@
-﻿using DA3_ShopCake.Screens;
+﻿using ConsoleApp2.db;
+using DA3_ShopCake.Screens;
 using dbforproject3.db.DbHelper;
 using System;
 using System.Collections.Generic;
@@ -59,7 +60,11 @@ namespace DA3_ShopCake
 
         private void insertDefaultDatabase()
         {
-            ;
+            CatalogueDaoImp catalogueDao = new CatalogueDaoImp();
+            catalogueDao.insertCatalogue(new Catalogue("1", "Bánh sinh nhật"));
+            catalogueDao.insertCatalogue(new Catalogue("2", "Bánh mì"));
+            catalogueDao.insertCatalogue(new Catalogue("3", "Bánh cupcake"));
+            catalogueDao.insertCatalogue(new Catalogue("4", "Bánh sandwich"));
         }
 
         private void createDefaultTable()

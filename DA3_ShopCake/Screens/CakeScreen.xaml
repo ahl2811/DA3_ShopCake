@@ -78,8 +78,7 @@
         <TextBlock FontSize="30" Foreground="Orange" Margin="200" Name="CateName"/>
         <WrapPanel ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible">
             <Border CornerRadius="10" Height="150" Width="160" Margin="10" BorderBrush="Orange"
-                                        BorderThickness="0.8" Name="itemBorder"
-                >
+                                        BorderThickness="0.8" Name="itemBorder">
                 <Border.Background>
                     <ImageBrush ImageSource="/Assets/Images/bread.jpeg" RenderOptions.BitmapScalingMode="HighQuality"
                                 x:Name="ImgItem"/>
@@ -105,7 +104,7 @@
                         </TextBlock>
                     </Border>
 
-                    <Border CornerRadius="0,5,5,10"  Width="150" Height="50" Margin="5,5,5,0" HorizontalAlignment="Left" Opacity="0.7">
+                    <Border CornerRadius="0,5,5,10"  Width="150" Height="50" Margin="5,0,5,0" HorizontalAlignment="Left" Opacity="0.7">
                         <Border.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
                                 <GradientStop Color="#fefefe" Offset="0.6"/>
@@ -122,7 +121,7 @@
                         Style="{StaticResource MenuButtonStyle}"
                         Tag="{StaticResource right}"
                         Click="LearnMoreButton_Click"
-                        Margin="0,10,0,0" Opacity="0.8"
+                        Margin="0,5,0,0" Opacity="0.8"
                         />
 
                     <!--<ToggleButton Name="ChooseItemButton" Style="{StaticResource ButtonStyle}" Margin="10 0 10 10" HorizontalAlignment="Right"
@@ -151,6 +150,50 @@
                             </Image>
 
                     </ToggleButton>-->
+                    <Button FontSize="14" x:Name="AddToOrderButton" VerticalAlignment="Center" HorizontalAlignment="Center"
+                            Margin="125,0,0,5">
+                        <Image Source="/Assets/Icons/uncheck.png"/>
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Height" Value="28"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="Width" Value="28"/>
+                                <Setter Property="HorizontalAlignment" Value="Left"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border CornerRadius="14"
+                                                                        Background="{TemplateBinding Background}"
+                                                                        BorderThickness ="0">
+                                                <Border.BorderBrush>
+                                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                                        <GradientStop Color="OrangeRed" Offset="0.1"/>
+                                                        <GradientStop Color="Orange" Offset="0.5"/>
+                                                    </LinearGradientBrush>
+                                                </Border.BorderBrush>
+
+                                                <Grid>
+                                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                                                      Content="{TemplateBinding Content}">
+                                                    </ContentPresenter>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#FFCC99"></Setter>
+                                                </Trigger>
+                                                <Trigger Property="IsPressed" Value="True">
+                                                    <Setter Property="Background" Value="#FFDEAD"></Setter>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                    </Button>
                 </StackPanel>
 
                 

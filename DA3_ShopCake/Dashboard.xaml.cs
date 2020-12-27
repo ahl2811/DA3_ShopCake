@@ -30,6 +30,7 @@ namespace DA3_ShopCake
             InitializeComponent();
             showDefaultScreen();
             createDatabaseIfNotExist();
+            rightTapDefaultWidth = rightTab.Width;
         }
         private void createDatabaseIfNotExist()
         {
@@ -205,11 +206,12 @@ namespace DA3_ShopCake
             if (this.WindowState != WindowState.Maximized)
             {
                 this.WindowState = WindowState.Maximized;
-
+                rightTapDefaultWidth = rightTab.Width;
             }
             else
             {
                 this.WindowState = WindowState.Normal;
+                rightTapDefaultWidth = rightTab.Width;
             }
         }
 
@@ -219,6 +221,7 @@ namespace DA3_ShopCake
             CategoryList.Visibility = Visibility.Visible;
             var screen = new CakeScreen((int)CakeType.BirthdayCake);
             screen.LearnMoreHandler += Screen_LearnMoreHandler;
+            ShowOrderScreen();
             SetRootScreen(screen);
         }
 
@@ -240,21 +243,36 @@ namespace DA3_ShopCake
             }
         }
 
+        double rightTapDefaultWidth;
+
+        private void HiddenOrderScreen()
+        {
+            rightTab.Visibility = Visibility.Collapsed;
+        }
+
+        private void ShowOrderScreen()
+        {
+            rightTab.Visibility = Visibility.Visible;
+        }
         private void AddNewButton_Click(object sender, RoutedEventArgs e)
         {
+            CategoryList.Visibility = Visibility.Hidden;
             var addNewScreen = new NewAddingScreen();
             addNewScreen.SubmitHandler += AddNewScreen_SubmitHandler;
             addNewScreen.ExitHandler += AddNewScreen_ExitHandler;
-            NavigateTo(addNewScreen);
+            HiddenOrderScreen();
+            SetRootScreen(addNewScreen);
         }
 
         private void AddNewScreen_ExitHandler()
         {
+            ShowOrderScreen();
             NavigateBack();
         }
 
         private void AddNewScreen_SubmitHandler()
         {
+            ShowOrderScreen();
             showDefaultScreen();
         }
 
@@ -265,10 +283,13 @@ namespace DA3_ShopCake
 
         private void Screen_LearnMoreHandler(string cakeCode)
         {
-            Cake cake = new CakeDaoImp().GetCakes()[0];
-            var detailScreen = new CakeDetailScreen(cake.Id);
+            //Cake cake = new CakeDaoImp().GetCakes()[0];
+            //var detailScreen = new CakeDetailScreen(cake.Id);
+
+            var detailScreen = new CakeDetailScreen("");
             detailScreen.ExitHandler += DetailScreen_ExitHandler;
             detailScreen.UpdateHandler += DetailScreen_UpdateHandler;
+            HiddenOrderScreen();
             NavigateTo(detailScreen);
         }
 
@@ -285,7 +306,6 @@ namespace DA3_ShopCake
             var detailScreen = new CakeDetailScreen(cakeCode);
             detailScreen.ExitHandler += DetailScreen_ExitHandler;
             detailScreen.UpdateHandler += DetailScreen_UpdateHandler;
-
             NavigateBackAndUpdateData(detailScreen);
         }
 
@@ -296,6 +316,7 @@ namespace DA3_ShopCake
 
         private void DetailScreen_ExitHandler()
         {
+            ShowOrderScreen();
             NavigateBack();
         }
 
@@ -308,12 +329,14 @@ namespace DA3_ShopCake
         {
             CategoryList.Visibility = Visibility.Collapsed;
             var screen = new HistoryScreen();
+            HiddenOrderScreen();
             SetRootScreen(screen);
         }
         private void StatisticButton_Click(object sender, RoutedEventArgs e)
         {
             CategoryList.Visibility = Visibility.Collapsed;
             var screen = new StatisticScreen();
+            HiddenOrderScreen();
             SetRootScreen(screen);
         }
 
@@ -374,6 +397,7 @@ namespace DA3_ShopCake
 
         private void CreatBillScreen_SubmitHandler()
         {
+            CategoryList.Visibility = Visibility.Hidden;
             HistoryOrderButton.IsChecked = true;
             ShowHistoryScreen();
         }

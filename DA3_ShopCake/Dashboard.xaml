@@ -477,8 +477,8 @@
 
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="3.8*"/>
-                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1.9*"/>
+                            <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
                         
                         <Grid Grid.ColumnSpan="2" Grid.Column="0" Name="MainScreen">
@@ -516,7 +516,7 @@
                             <Grid Grid.Row="1" Background="WhiteSmoke">
                                 <!--List view order-->
                                 <StackPanel>
-                                    <Border Height="50" Background="#fffffd" Margin="0,0,0,2">
+                                    <Border Height="50" Background="#fffffd" Margin="0,0,0,2" Padding="7,0">
                                         <Grid>
                                             <Separator BorderBrush="WhiteSmoke" BorderThickness="1" VerticalAlignment="Bottom"></Separator>
                                             <Grid>
@@ -565,7 +565,7 @@
 
                                                 <Grid Grid.Column="1">
                                                     <TextBlock Text="Ten San Pham Pla Pla" FontSize="15" Foreground="DimGray" VerticalAlignment="Center" TextWrapping="Wrap"
-                                                           Margin="5,0,5,0" FontWeight="SemiBold"/>
+                                                           Margin="5,0,5,0" FontWeight="SemiBold" MaxWidth="140"/>
                                                 </Grid>
 
                                                 <Grid Grid.Column="2">
@@ -684,7 +684,7 @@
 
                                                 <Grid Grid.Column="3">
                                                     <TextBlock Text="1.000.000" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                           Foreground="DimGray" FontWeight="Bold"/>
+                                                           Foreground="DimGray" FontWeight="Bold" Margin="5,0,0,0"/>
                                                 </Grid>
                                             </Grid>
                                         </Grid>

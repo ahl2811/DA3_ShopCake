@@ -1,8 +1,10 @@
 ﻿using ConsoleApp2.db;
 using DA3_ShopCake.Screens;
+using DA3_ShopCake.utils;
 using dbforproject3.db.DbHelper;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,13 +27,133 @@ namespace DA3_ShopCake
     public partial class Dashboard : Window
     {
         private readonly Stack<UserControl> ScreenStack = new Stack<UserControl>();
+        private List<KeyValuePair<String, int>> numPurchases;
+        private ObservableCollection<Cake> selectedCakes;
+        private CakeDaoImp cakeDao;
         public Dashboard()
         {
             InitializeComponent();
             showDefaultScreen();
             createDatabaseIfNotExist();
             rightTapDefaultWidth = rightTab.Width;
+
+            cakeDao = new CakeDaoImp();
+            numPurchases = new List<KeyValuePair<string, int>>();
+            selectedCakes = new ObservableCollection<Cake>();
+
+            //following code for testing function
+            foreach (Cake cake in cakeDao.GetCakes())
+            {
+                selectedCakes.Add(cake);
+                numPurchases.Add(new KeyValuePair<string, int>(cake.Id, 1));
+            }
+
+            lbSelectedPurchases.ItemsSource = selectedCakes;
+            updateTmpCostTextBlock();
+            updateLastCostTextBlock();
         }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+        }
+
+        private void OnIncreasingItemCount(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            StackPanel stackPanel = (StackPanel)button.Parent;
+            Grid grid = (Grid)stackPanel.Parent;
+
+            Grid firstItem = grid.Children.OfType<Grid>().FirstOrDefault();
+
+            TextBox currentCount = firstItem.Children.OfType<TextBox>().FirstOrDefault();
+
+            int currentCountInt = Int32.Parse(currentCount.Text);
+            currentCountInt += 1;
+            currentCount.Text = currentCountInt.ToString();
+
+            String cakeId = button.Tag.ToString();
+            changeSelectedItemNumInList(cakeId, currentCountInt);
+            updateTmpCostTextBlock();
+            updateLastCostTextBlock();
+        }
+
+        private void changeSelectedItemNumInList(String itemId, int newValue)
+        {
+            foreach (KeyValuePair<String, int> selectedItem in numPurchases)
+            {
+                if (selectedItem.Key.Equals(itemId))
+                {
+                    KeyValuePair<String, int> newKeyValue = new KeyValuePair<string, int>(itemId, newValue);
+                    numPurchases[numPurchases.IndexOf(selectedItem)] = newKeyValue;
+                    break;
+                }
+            }
+        }
+
+        private void OnDecreasingItemCount(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            StackPanel stackPanel = (StackPanel)button.Parent;
+            Grid grid = (Grid)stackPanel.Parent;
+
+            Grid firstItem = grid.Children.OfType<Grid>().FirstOrDefault();
+
+            TextBox currentCount = firstItem.Children.OfType<TextBox>().FirstOrDefault();
+
+            int currentCountInt = Int32.Parse(currentCount.Text);
+
+            if (currentCountInt == 0)
+            {
+                return;
+            }
+            else
+            {
+                currentCountInt -= 1;
+                currentCount.Text = currentCountInt.ToString();
+
+                String cakeId = button.Tag.ToString();
+                changeSelectedItemNumInList(cakeId, currentCountInt);
+                updateTmpCostTextBlock();
+                updateLastCostTextBlock();
+            }
+
+        }
+
+        private void OnRemoveItem(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            String itemId = button.Tag.ToString();
+
+            removeItemInSelectedListBox(itemId);
+            removeItemInSeletedList(itemId);
+            updateTmpCostTextBlock();
+            updateLastCostTextBlock();
+        }
+
+        private void removeItemInSeletedList(String itemId)
+        {
+            foreach (KeyValuePair<String, int> selectedItem in numPurchases)
+            {
+                if (selectedItem.Key.Equals(itemId))
+                {
+                    numPurchases.Remove(selectedItem);
+                    break;
+                }
+            }
+        }
+
+        private void removeItemInSelectedListBox(String itemId)
+        {
+            foreach (Cake cake in selectedCakes)
+            {
+                if (cake.Id.Equals(itemId))
+                {
+                    selectedCakes.Remove(cake);
+                    break;
+                }
+            }
+        }
+
         private void createDatabaseIfNotExist()
         {
 
@@ -283,10 +405,16 @@ namespace DA3_ShopCake
 
         private void Screen_LearnMoreHandler(string cakeCode)
         {
-            //Cake cake = new CakeDaoImp().GetCakes()[0];
-            //var detailScreen = new CakeDetailScreen(cake.Id);
+            Cake cake = cakeDao.getCakeById(cakeCode);
 
-            var detailScreen = new CakeDetailScreen("");
+            if(cake == null)
+            {
+                MessageBox.Show("Mã sản phẩm không hợp lệ");
+                return;
+            }
+
+            var detailScreen = new CakeDetailScreen(cake.Id);
+
             detailScreen.ExitHandler += DetailScreen_ExitHandler;
             detailScreen.UpdateHandler += DetailScreen_UpdateHandler;
             HiddenOrderScreen();
@@ -389,9 +517,15 @@ namespace DA3_ShopCake
 
         private void createBillButton_Click(object sender, RoutedEventArgs e)
         {
-            var creatBillScreen = new CreatingBillScreen();
+            if(numPurchases.Count() == 0)
+            {
+                MessageBox.Show("Giỏ hàng rỗng");
+                return;
+            }
+            var creatBillScreen = new CreatingBillScreen(numPurchases, Double.Parse(txtLastCost.Text));
             creatBillScreen.ExitHandler += CreatBillScreen_ExitHandler;
             creatBillScreen.SubmitHandler += CreatBillScreen_SubmitHandler;
+
             NavigateTo(creatBillScreen);
         }
 
@@ -410,6 +544,48 @@ namespace DA3_ShopCake
         private void RefreshBillButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private int calCulateTmpCost()
+        {
+            List<KeyValuePair<int, int>> serialNums = getSerialNums();
+            return Calculation.numOfSerialNumbers(serialNums);
+        }
+
+        private void updateTmpCostTextBlock()
+        {
+            int tmpCost = calCulateTmpCost();
+            txtTmpCost.Text = tmpCost.ToString();
+        }  
+        
+        private void updateLastCostTextBlock()
+        {
+            int tmpCost = calCulateTmpCost();
+            double lastCost = tmpCost;
+
+            if(cbDiscount.IsChecked == true)
+            {
+                lastCost = ((double)tmpCost) - (Calculation.divide(tmpCost, 10));
+            }
+            txtLastCost.Text = lastCost.ToString();
+        }
+
+
+        private List<KeyValuePair<int, int>> getSerialNums()
+        {
+            List<KeyValuePair<int, int>> serialNums = new List<KeyValuePair<int, int>>();
+            foreach (KeyValuePair<String, int> item in numPurchases)
+            {
+                Cake cake = cakeDao.getCakeById(item.Key);
+                serialNums.Add(new KeyValuePair<int, int>(cake.Price, item.Value));
+            }
+
+            return serialNums;
+        }
+
+        private void OnDiscountChange(object sender, RoutedEventArgs e)
+        {
+            updateLastCostTextBlock();
         }
     }
 }

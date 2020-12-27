@@ -74,5 +74,10 @@ namespace DA3_ShopCake.Screens
                 LearnMoreHandler(cakeCode);
             }
         }
+
+        private void onPurchase(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

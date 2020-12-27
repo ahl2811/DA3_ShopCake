@@ -76,7 +76,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0" Background="White"><!--Menu-->
+        <Grid Grid.Column="0" Background="White">
+            <!--Menu-->
             <StackPanel Margin="0,28,0,0">
                 <Image Source="/Assets/Icons/logo.png" RenderOptions.BitmapScalingMode="HighQuality" Width="50" Height="50" Margin="0,0,0,20"/>
                 <Separator
@@ -480,10 +481,10 @@
                             <ColumnDefinition Width="1.9*"/>
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
-                        
+
                         <Grid Grid.ColumnSpan="2" Grid.Column="0" Name="MainScreen">
-                            
-                            
+
+
                         </Grid>
 
                         <Grid x:Name="rightTab" Grid.Column="1" Margin="0,10,10,0">
@@ -515,182 +516,186 @@
 
                             <Grid Grid.Row="1" Background="WhiteSmoke">
                                 <!--List view order-->
-                                <StackPanel>
-                                    <Border Height="50" Background="#fffffd" Margin="0,0,0,2" Padding="7,0">
-                                        <Grid>
-                                            <Separator BorderBrush="WhiteSmoke" BorderThickness="1" VerticalAlignment="Bottom"></Separator>
-                                            <Grid>
+                                <ListBox  x:Name="lbSelectedPurchases" HorizontalAlignment="Left" Margin="20,0,0,0" Background="#E8E8E8" BorderThickness="0" BorderBrush="Transparent" HorizontalContentAlignment="Stretch">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Margin="0,2">
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="26"/>
-                                                    <ColumnDefinition Width="2*"/>
-                                                    <ColumnDefinition/>
-                                                    <ColumnDefinition Width="1.2*"/>
+                                                    <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
-                                                <Grid Grid.Column="0">
-                                                    <Button FontSize="14">
-                                                        <Image Source="/Assets/Icons/trash.png"/>
-                                                        <Button.Style>
-                                                            <Style TargetType="{x:Type Button}">
-                                                                <Setter Property="Height" Value="20"/>
-                                                                <Setter Property="Foreground" Value="White"/>
-                                                                <Setter Property="Background" Value="Transparent"/>
-                                                                <Setter Property="Width" Value="20"/>
-                                                                <Setter Property="HorizontalAlignment" Value="Center"/>
-                                                                <Setter Property="Template">
-                                                                    <Setter.Value>
-                                                                        <ControlTemplate TargetType="{x:Type Button}">
-                                                                            <Border CornerRadius="3" Background="{TemplateBinding Background}" BorderThickness ="{TemplateBinding BorderThickness}">
-                                                                                <Grid>
-                                                                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}"
+                                                <Grid>
+                                                    <Separator BorderBrush="WhiteSmoke" BorderThickness="1" VerticalAlignment="Bottom"></Separator>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="26"/>
+                                                            <ColumnDefinition Width="2*"/>
+                                                            <ColumnDefinition/>
+                                                            <ColumnDefinition Width="1.2*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid Grid.Column="0">
+                                                            <Button Click="OnRemoveItem" Tag="{Binding Id}"  FontSize="14">
+                                                                <Image Source="/Assets/Icons/trash.png"/>
+                                                                <Button.Style>
+                                                                    <Style TargetType="{x:Type Button}">
+                                                                        <Setter Property="Height" Value="20"/>
+                                                                        <Setter Property="Foreground" Value="White"/>
+                                                                        <Setter Property="Background" Value="Transparent"/>
+                                                                        <Setter Property="Width" Value="20"/>
+                                                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                                        <Setter Property="Template">
+                                                                            <Setter.Value>
+                                                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                                                    <Border CornerRadius="3" Background="{TemplateBinding Background}" BorderThickness ="{TemplateBinding BorderThickness}">
+                                                                                        <Grid>
+                                                                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}"
                                                        >
-                                                                                    </ContentPresenter>
-                                                                                </Grid>
-                                                                            </Border>
-                                                                            <ControlTemplate.Triggers>
-                                                                                <Trigger Property="IsMouseOver" Value="True">
-                                                                                    <Setter Property="Background" Value="#FFCC99"></Setter>
-                                                                                </Trigger>
-                                                                                <Trigger Property="IsPressed" Value="True">
-                                                                                    <Setter Property="Background" Value="#FFDEAD"></Setter>
-                                                                                </Trigger>
-                                                                            </ControlTemplate.Triggers>
-                                                                        </ControlTemplate>
-                                                                    </Setter.Value>
-                                                                </Setter>
-                                                            </Style>
-                                                        </Button.Style>
-                                                    </Button>
+                                                                                            </ContentPresenter>
+                                                                                        </Grid>
+                                                                                    </Border>
+                                                                                    <ControlTemplate.Triggers>
+                                                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                                                            <Setter Property="Background" Value="#FFCC99"></Setter>
+                                                                                        </Trigger>
+                                                                                        <Trigger Property="IsPressed" Value="True">
+                                                                                            <Setter Property="Background" Value="#FFDEAD"></Setter>
+                                                                                        </Trigger>
+                                                                                    </ControlTemplate.Triggers>
+                                                                                </ControlTemplate>
+                                                                            </Setter.Value>
+                                                                        </Setter>
+                                                                    </Style>
+                                                                </Button.Style>
+                                                            </Button>
 
-                                                </Grid>
+                                                        </Grid>
 
-                                                <Grid Grid.Column="1">
-                                                    <TextBlock Text="Ten San Pham Pla Pla" FontSize="15" Foreground="DimGray" VerticalAlignment="Center" TextWrapping="Wrap"
+                                                        <Grid Grid.Column="1">
+                                                            <TextBlock Text="{Binding Name}" FontSize="15" Foreground="DimGray" VerticalAlignment="Center" TextWrapping="Wrap"
                                                            Margin="5,0,5,0" FontWeight="SemiBold" MaxWidth="140"/>
-                                                </Grid>
+                                                        </Grid>
 
-                                                <Grid Grid.Column="2">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition/>
-                                                        <ColumnDefinition/>
-                                                    </Grid.ColumnDefinitions>
+                                                        <Grid Grid.Column="2">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition/>
+                                                            </Grid.ColumnDefinitions>
 
-                                                    <Grid Grid.Column="0">
-                                                        <TextBox Text="3" Width="30" Height="36" HorizontalAlignment="Right" VerticalAlignment="Center"
+                                                            <Grid Grid.Column="0">
+                                                                <TextBox IsReadOnly="True" x:Name="txtCount" Text="1" Width="30" Height="36" HorizontalAlignment="Right" VerticalAlignment="Center"
                                                                  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="16"
                                                                  FontWeight="SemiBold" Foreground="Orange">
-                                                            <TextBox.Resources>
-                                                                <Style TargetType="{x:Type Border}">
-                                                                    <Setter Property="CornerRadius" Value="3 0 0 3"/>
-                                                                </Style>
-                                                            </TextBox.Resources>
-                                                        </TextBox>
-                                                    </Grid>
+                                                                    <TextBox.Resources>
+                                                                        <Style TargetType="{x:Type Border}">
+                                                                            <Setter Property="CornerRadius" Value="3 0 0 3"/>
+                                                                        </Style>
+                                                                    </TextBox.Resources>
+                                                                </TextBox>
+                                                            </Grid>
 
-                                                    <Grid Grid.Column="1">
-                                                        <StackPanel VerticalAlignment="Center">
-                                                            <Button FontSize="14" Content="+">
-                                                                <Button.Style>
-                                                                    <Style TargetType="{x:Type Button}">
-                                                                        <Setter Property="Height" Value="18"/>
-                                                                        <Setter Property="Foreground" Value="White"/>
-                                                                        <Setter Property="Width" Value="30"/>
-                                                                        <Setter Property="HorizontalAlignment" Value="Left"/>
-                                                                        <Setter Property="Background">
-                                                                            <Setter.Value>
-                                                                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                                                                                    <GradientStop Color="Orange" Offset="0.1"/>
-                                                                                    <GradientStop Color="OrangeRed" Offset="0.8"/>
-                                                                                </LinearGradientBrush>
-                                                                            </Setter.Value>
-                                                                        </Setter>
-                                                                        <Setter Property="Template">
-                                                                            <Setter.Value>
-                                                                                <ControlTemplate TargetType="{x:Type Button}">
-                                                                                    <Border CornerRadius="0,3,0,0" BorderBrush ="Orange"
+                                                            <StackPanel VerticalAlignment="Center" Grid.Column="1">
+                                                                <Button Tag="{Binding Id}" Click="OnIncreasingItemCount" FontSize="14" Content="+">
+                                                                    <Button.Style>
+                                                                        <Style TargetType="{x:Type Button}">
+                                                                            <Setter Property="Height" Value="18"/>
+                                                                            <Setter Property="Foreground" Value="White"/>
+                                                                            <Setter Property="Width" Value="30"/>
+                                                                            <Setter Property="HorizontalAlignment" Value="Left"/>
+                                                                            <Setter Property="Background">
+                                                                                <Setter.Value>
+                                                                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                                                                        <GradientStop Color="Orange" Offset="0.1"/>
+                                                                                        <GradientStop Color="OrangeRed" Offset="0.8"/>
+                                                                                    </LinearGradientBrush>
+                                                                                </Setter.Value>
+                                                                            </Setter>
+                                                                            <Setter Property="Template">
+                                                                                <Setter.Value>
+                                                                                    <ControlTemplate TargetType="{x:Type Button}">
+                                                                                        <Border CornerRadius="0,3,0,0" BorderBrush ="Orange"
                                                                                             Background="{TemplateBinding Background}"
                                                                                             BorderThickness ="0">
 
-                                                                                        <Grid>
-                                                                                            <ContentPresenter 
+                                                                                            <Grid>
+                                                                                                <ContentPresenter 
                                                                                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                                                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
                                                                                                 Content="{TemplateBinding Content}">
-                                                                                            </ContentPresenter>
-                                                                                        </Grid>
-                                                                                    </Border>
-                                                                                    <ControlTemplate.Triggers>
-                                                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                                                            <Setter Property="Background" Value="#FFCC99"></Setter>
-                                                                                        </Trigger>
-                                                                                        <Trigger Property="IsPressed" Value="True">
-                                                                                            <Setter Property="Background" Value="#FFDEAD"></Setter>
-                                                                                        </Trigger>
-                                                                                    </ControlTemplate.Triggers>
-                                                                                </ControlTemplate>
-                                                                            </Setter.Value>
-                                                                        </Setter>
-                                                                    </Style>
-                                                                </Button.Style>
-                                                            </Button>
+                                                                                                </ContentPresenter>
+                                                                                            </Grid>
+                                                                                        </Border>
+                                                                                        <ControlTemplate.Triggers>
+                                                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                                                <Setter Property="Background" Value="#FFCC99"></Setter>
+                                                                                            </Trigger>
+                                                                                            <Trigger Property="IsPressed" Value="True">
+                                                                                                <Setter Property="Background" Value="#FFDEAD"></Setter>
+                                                                                            </Trigger>
+                                                                                        </ControlTemplate.Triggers>
+                                                                                    </ControlTemplate>
+                                                                                </Setter.Value>
+                                                                            </Setter>
+                                                                        </Style>
+                                                                    </Button.Style>
+                                                                </Button>
 
-                                                            <Button FontSize="14" Content="-">
-                                                                <Button.Style>
-                                                                    <Style TargetType="{x:Type Button}">
-                                                                        <Setter Property="Height" Value="18"/>
-                                                                        <Setter Property="Foreground" Value="White"/>
-                                                                        <Setter Property="Width" Value="30"/>
-                                                                        <Setter Property="HorizontalAlignment" Value="Left"/>
-                                                                        <Setter Property="Background">
-                                                                            <Setter.Value>
-                                                                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                                                                                    <GradientStop Color="Orange" Offset="0.1"/>
-                                                                                    <GradientStop Color="OrangeRed" Offset="0.8"/>
-                                                                                </LinearGradientBrush>
-                                                                            </Setter.Value>
-                                                                        </Setter>
-                                                                        <Setter Property="Template">
-                                                                            <Setter.Value>
-                                                                                <ControlTemplate TargetType="{x:Type Button}">
-                                                                                    <Border CornerRadius="0,0,3,0" BorderBrush ="Orange"
+                                                                <Button Click="OnDecreasingItemCount" Tag="{Binding Id}" FontSize="14" Content="-">
+                                                                    <Button.Style>
+                                                                        <Style TargetType="{x:Type Button}">
+                                                                            <Setter Property="Height" Value="18"/>
+                                                                            <Setter Property="Foreground" Value="White"/>
+                                                                            <Setter Property="Width" Value="30"/>
+                                                                            <Setter Property="HorizontalAlignment" Value="Left"/>
+                                                                            <Setter Property="Background">
+                                                                                <Setter.Value>
+                                                                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                                                                        <GradientStop Color="Orange" Offset="0.1"/>
+                                                                                        <GradientStop Color="OrangeRed" Offset="0.8"/>
+                                                                                    </LinearGradientBrush>
+                                                                                </Setter.Value>
+                                                                            </Setter>
+                                                                            <Setter Property="Template">
+                                                                                <Setter.Value>
+                                                                                    <ControlTemplate TargetType="{x:Type Button}">
+                                                                                        <Border CornerRadius="0,0,3,0" BorderBrush ="Orange"
                                                                                             Background="{TemplateBinding Background}"
                                                                                             BorderThickness ="0">
 
-                                                                                        <Grid>
-                                                                                            <ContentPresenter 
+                                                                                            <Grid>
+                                                                                                <ContentPresenter 
                                                                                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                                                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
                                                                                                 Content="{TemplateBinding Content}">
-                                                                                            </ContentPresenter>
-                                                                                        </Grid>
-                                                                                    </Border>
-                                                                                    <ControlTemplate.Triggers>
-                                                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                                                            <Setter Property="Background" Value="#FFCC99"></Setter>
-                                                                                        </Trigger>
-                                                                                        <Trigger Property="IsPressed" Value="True">
-                                                                                            <Setter Property="Background" Value="#FFDEAD"></Setter>
-                                                                                        </Trigger>
-                                                                                    </ControlTemplate.Triggers>
-                                                                                </ControlTemplate>
-                                                                            </Setter.Value>
-                                                                        </Setter>
-                                                                    </Style>
-                                                                </Button.Style>
-                                                            </Button>
-                                                        </StackPanel>
-                                                    </Grid>
+                                                                                                </ContentPresenter>
+                                                                                            </Grid>
+                                                                                        </Border>
+                                                                                        <ControlTemplate.Triggers>
+                                                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                                                <Setter Property="Background" Value="#FFCC99"></Setter>
+                                                                                            </Trigger>
+                                                                                            <Trigger Property="IsPressed" Value="True">
+                                                                                                <Setter Property="Background" Value="#FFDEAD"></Setter>
+                                                                                            </Trigger>
+                                                                                        </ControlTemplate.Triggers>
+                                                                                    </ControlTemplate>
+                                                                                </Setter.Value>
+                                                                            </Setter>
+                                                                        </Style>
+                                                                    </Button.Style>
+                                                                </Button>
+                                                            </StackPanel>
 
-                                                </Grid>
+                                                        </Grid>
 
-                                                <Grid Grid.Column="3">
-                                                    <TextBlock Text="1.000.000" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                        <Grid Grid.Column="3">
+                                                            <TextBlock Text="{Binding Price}" VerticalAlignment="Center" HorizontalAlignment="Center"
                                                            Foreground="DimGray" FontWeight="Bold" Margin="5,0,0,0"/>
+                                                        </Grid>
+                                                    </Grid>
                                                 </Grid>
                                             </Grid>
-                                        </Grid>
-
-                                    </Border>
-                                </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
 
                             </Grid>
 
@@ -714,7 +719,7 @@
                                     </Grid>
 
                                     <Grid Grid.Column="1">
-                                        <TextBlock Text="2.000.000" FontSize="16" FontWeight="SemiBold" Foreground="#696969" VerticalAlignment="Center" Margin="7,0"
+                                        <TextBlock x:Name="txtTmpCost" Text="0.0" FontSize="16" FontWeight="SemiBold" Foreground="#696969" VerticalAlignment="Center" Margin="7,0"
                                                    HorizontalAlignment="Right"/>
                                     </Grid>
                                 </Grid>
@@ -722,11 +727,12 @@
                                 <Grid Grid.Row="1">
 
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="95*"/>
+                                        <ColumnDefinition Width="81*"/>
+                                        <ColumnDefinition Width="14*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <CheckBox Content="Giảm giá" Foreground="Gray" VerticalAlignment="Center" Margin="7,0">
+                                    <CheckBox x:Name="cbDiscount" Click="OnDiscountChange" Content="Giảm giá" Foreground="Gray" VerticalAlignment="Center" Margin="7,4">
                                         <CheckBox.Resources>
                                             <Style TargetType="{x:Type Border}">
                                                 <Setter Property="BorderBrush" Value="Gray"/>
@@ -737,7 +743,7 @@
                                         </CheckBox.Resources>
                                     </CheckBox>
 
-                                    <Grid Grid.Column="1">
+                                    <Grid Grid.Column="1" Grid.ColumnSpan="2">
                                         <TextBlock Text="10%" FontSize="15"  Foreground="Orange" VerticalAlignment="Center" Margin="7,0"
                                                    HorizontalAlignment="Right"/>
                                     </Grid>
@@ -756,7 +762,7 @@
                                         </Grid>
 
                                         <Grid Grid.Column="1">
-                                            <TextBlock Text="2.000.000" FontSize="16" FontWeight="Black" Foreground="OrangeRed" VerticalAlignment="Center" Margin="7,0"
+                                            <TextBlock x:Name="txtLastCost" Text="0.0" FontSize="16" FontWeight="Black" Foreground="OrangeRed" VerticalAlignment="Center" Margin="7,0"
                                                    HorizontalAlignment="Right"/>
                                         </Grid>
                                     </Grid>
@@ -839,15 +845,15 @@
 
                                         </Button>
                                     </Grid>
-                                    
+
                                 </Grid>
-                                
+
                             </Grid>
                         </Grid>
 
                     </Grid>
                 </Grid>
-                
+
             </Grid>
         </Grid>
     </Grid>

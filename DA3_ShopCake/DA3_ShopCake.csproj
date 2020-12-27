@@ -95,6 +95,7 @@
     <Compile Include="Screens\UpdatingScreen.xaml.cs">
       <DependentUpon>UpdatingScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="utils\Calculation.cs" />
     <Compile Include="utils\StringHelper.cs" />
     <Page Include="Assets\icons.xaml">
       <Generator>MSBuild:Compile</Generator>

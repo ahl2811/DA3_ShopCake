@@ -124,32 +124,6 @@
                         Margin="0,5,0,0" Opacity="0.8"
                         />
 
-                    <!--<ToggleButton Name="ChooseItemButton" Style="{StaticResource ButtonStyle}" Margin="10 0 10 10" HorizontalAlignment="Right"
-                                  VerticalAlignment="Bottom"
-                                              Checked="ChooseItemButton_Checked"
-                                              Unchecked="ChooseItemButton_Unchecked"
-                                              IsChecked="False">
-                        <Image Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                               RenderOptions.BitmapScalingMode="HighQuality">
-                                <Image.Style>
-                                    <Style TargetType="{x:Type Image}">
-                                        <Style.Triggers>
-                                        <DataTrigger  Binding="{Binding IsChecked, ElementName=ChooseItemButton}" Value="False">
-                                            <Setter Property="Source" Value="/Assets/Icons/uncheck.png" />
-                                        </DataTrigger>
-                                            
-                                        <DataTrigger  Binding="{Binding IsChecked, ElementName=ChooseItemButton}" Value="True">
-                                                <Setter Property="Source" Value="/Assets/Icons/check.png" />
-                                            </DataTrigger>
-                                        <DataTrigger Binding="{Binding IsMouseOver, ElementName=ChooseItemButton}" Value="True">
-                                                <Setter Property="Source" Value="/Assets/Icons/check.png" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Image.Style>
-                            </Image>
-
-                    </ToggleButton>-->
                     <Button FontSize="14" x:Name="AddToOrderButton" VerticalAlignment="Center" HorizontalAlignment="Center"
                             Margin="125,0,0,5">
                         <Image Source="/Assets/Icons/uncheck.png"/>
@@ -194,9 +168,39 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                </StackPanel>
+                    <Button
+                    Click="onPurchase"
+                     BorderThickness="0"
+                     Foreground="White"
+                     Height="50"
+                     Width="120"
+                    >
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
 
-                
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                <GradientStop Color="#1f8545" Offset="0.1"/>
+                                <GradientStop Color="#7CFC04" Offset="0.8"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        <Button.Content>
+                            <Grid>
+                                <TextBlock Text="Cập nhật"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontWeight="Regular"
+                                                       FontSize="18"
+                                           />
+                            </Grid>
+                        </Button.Content>
+
+                    </Button>
+
+                </StackPanel>
             </Border>
 
         </WrapPanel>

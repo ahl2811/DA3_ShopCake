@@ -61,6 +61,22 @@ namespace ConsoleApp2.db
             return customers;
         }
 
+        public Customer getCustomerById(String id)
+        {
+            Customer result = null;
+
+            foreach (Customer customer in customers)
+            {
+                if (customer.Id.Equals(id))
+                {
+                    result = customer;
+                    break;
+                }
+            }
+
+            return result;
+        }
+
         public void insertCustomer(Customer customer)
         {
 

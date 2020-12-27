@@ -58,7 +58,21 @@ namespace ConsoleApp2.db
         {
             return detailBills;
         }
+        public DetailBill getDetailBillByBillId(String id)
+        {
+            DetailBill result = null;
 
+            foreach (DetailBill detail in detailBills)
+            {
+                if (detail.BillId.Equals(id))
+                {
+                    result = detail;
+                    break;
+                }
+            }
+
+            return result;
+        }
         public void insertDetailBill(DetailBill detail)
         {
             using (SqlConnection connection = new SqlConnection("Server=localhost; Database=QLTiemBanh; Trusted_Connection=True;"))

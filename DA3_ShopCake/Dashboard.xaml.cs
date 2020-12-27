@@ -75,6 +75,13 @@ namespace DA3_ShopCake
             changeSelectedItemNumInList(cakeId, currentCountInt);
             updateTmpCostTextBlock();
             updateLastCostTextBlock();
+
+            Grid container = (Grid)grid.Parent;
+            Grid priceContainer = (Grid)container.Children[3];
+
+            TextBlock itemCountPrice = priceContainer.Children.OfType<TextBlock>().FirstOrDefault();
+            Cake cake = cakeDao.getCakeById(cakeId);
+            itemCountPrice.Text = (currentCountInt * cake.Price).ToString();
         }
 
         private void changeSelectedItemNumInList(String itemId, int newValue)
@@ -115,6 +122,13 @@ namespace DA3_ShopCake
                 changeSelectedItemNumInList(cakeId, currentCountInt);
                 updateTmpCostTextBlock();
                 updateLastCostTextBlock();
+
+                Grid container = (Grid)grid.Parent;
+                Grid priceContainer = (Grid)container.Children[3];
+
+                TextBlock itemCountPrice = priceContainer.Children.OfType<TextBlock>().FirstOrDefault();
+                Cake cake = cakeDao.getCakeById(cakeId);
+                itemCountPrice.Text = (currentCountInt * cake.Price).ToString();
             }
 
         }
@@ -543,13 +557,16 @@ namespace DA3_ShopCake
 
         private void RefreshBillButton_Click(object sender, RoutedEventArgs e)
         {
-
+            selectedCakes.Clear();
+            numPurchases.Clear();
+            updateTmpCostTextBlock();
+            updateLastCostTextBlock();
         }
 
         private int calCulateTmpCost()
         {
             List<KeyValuePair<int, int>> serialNums = getSerialNums();
-            return Calculation.numOfSerialNumbers(serialNums);
+            return Calculation.sumOfSerialNumbers(serialNums);
         }
 
         private void updateTmpCostTextBlock()

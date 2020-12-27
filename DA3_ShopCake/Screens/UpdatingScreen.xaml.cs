@@ -98,6 +98,14 @@ namespace DA3_ShopCake.Screens
                 CakeImageDaoImp cakeImageDao = new CakeImageDaoImp();
                 foreach (CakeImage cakeImage in newCakeImages)
                 {
+                    var info = new FileInfo(cakeImage.Image);
+
+                    var newName = $"{Guid.NewGuid()}{info.Extension}";
+
+                    var currentFolder = AppDomain.CurrentDomain.BaseDirectory;
+                    File.Copy(cakeImage.Image, $"{currentFolder}Assets\\Images\\{newName}");
+                    cakeImage.Image = $"{currentFolder}Assets\\Images\\{newName}";
+
                     cakeImageDao.insertCakeImage(cakeImage);
                 }
             }
@@ -125,17 +133,8 @@ namespace DA3_ShopCake.Screens
             {
                 var files = screen.FileNames;
 
-                foreach (var file in files)
-                {
-
-                    var info = new FileInfo(file);
-
-                    var newName = $"{Guid.NewGuid()}{info.Extension}";
-
-                    var currentFolder = AppDomain.CurrentDomain.BaseDirectory;
-                    File.Copy(file, $"{currentFolder}Assets\\Images\\{newName}");
-
-                    CakeImage newCakeImage = new CakeImage(cakeCode, $"{currentFolder}Assets\\Images\\{newName}");
+                foreach (var file in files) { 
+                    CakeImage newCakeImage = new CakeImage(cakeCode, file);
                     newCakeImages.Add(newCakeImage);
                     cakeImages.Add(newCakeImage);
                 }

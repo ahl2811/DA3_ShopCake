@@ -8,7 +8,7 @@ namespace DA3_ShopCake.utils
 {
     class Calculation
     {
-        public static int numOfSerialNumbers(List<KeyValuePair<int, int>> serialNums)
+        public static int sumOfSerialNumbers(List<KeyValuePair<int, int>> serialNums)
         {
             int result = 0;
 

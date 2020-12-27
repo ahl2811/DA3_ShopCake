@@ -686,7 +686,7 @@
 
                                                         </Grid>
 
-                                                        <Grid Grid.Column="3">
+                                                        <Grid x:Name="ahhi" Grid.Column="3">
                                                             <TextBlock Text="{Binding Price}" VerticalAlignment="Center" HorizontalAlignment="Center"
                                                            Foreground="DimGray" FontWeight="Bold" Margin="5,0,0,0"/>
                                                         </Grid>

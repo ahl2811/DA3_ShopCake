@@ -6,7 +6,47 @@
              xmlns:local="clr-namespace:DA3_ShopCake.Screens"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock FontSize="30" Foreground="Orange" Margin="200" Text="History Screen"/>
-    </Grid>
+    <StackPanel Orientation="Vertical">
+        <TextBlock FontSize="30" Foreground="Red" HorizontalAlignment="Center" Text="History Screen"/>
+        <Grid Width="750" Margin="0,20,0,0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" HorizontalAlignment="Left" Content="Mã bill" Foreground="Orange"/>
+            <Label Grid.Column="1" HorizontalAlignment="Center" Content="Tên khách hàng" Foreground="Orange"/>
+            <Label Grid.Column="2" HorizontalAlignment="Center" Content="Số điện thoại" Foreground="Orange"/>
+            <Label Grid.Column="3" HorizontalAlignment="Center" Content="Ngày tạo" Foreground="Orange"/>
+            <Label Grid.Column="4" HorizontalAlignment="Center" Content="Thành tiền" Foreground="Orange"/>
+        </Grid>
+        <ListBox HorizontalAlignment="Center" 
+                     Background="#E8E8E8"
+                     BorderThickness="2" BorderBrush="Orange"
+                     Name="lbHistoryBills" 
+                     HorizontalContentAlignment="Stretch"
+                     MinHeight="300" MaxHeight="380" MinWidth="750">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Foreground="Red" HorizontalAlignment="Left" FontWeight="Bold" Grid.Column="0" Text="{Binding BillId}" FontSize="20"/>
+                        <TextBlock Foreground="Olive" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="1" Text="{Binding CustomerName}" FontSize="20"/>
+                        <TextBlock Foreground="Olive" HorizontalAlignment="Center"  FontWeight="Bold" Grid.Column="2" Text="{Binding Phone}" FontSize="20"/>
+                        <TextBlock Foreground="Olive" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="3" Text="{Binding SaleDate}" FontSize="20"/>
+                        <TextBlock Foreground="Olive" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="4" Text="{Binding Count}" FontSize="20"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+    </StackPanel>
 </UserControl>

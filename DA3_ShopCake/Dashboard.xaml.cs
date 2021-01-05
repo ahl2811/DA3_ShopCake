@@ -1,4 +1,5 @@
 ﻿using ConsoleApp2.db;
+using DA3_ShopCake.db;
 using DA3_ShopCake.Screens;
 using DA3_ShopCake.utils;
 using dbforproject3.db.DbHelper;
@@ -202,6 +203,80 @@ namespace DA3_ShopCake
             catalogueDao.insertCatalogue(new Catalogue("2", "Bánh mì"));
             catalogueDao.insertCatalogue(new Catalogue("3", "Bánh cupcake"));
             catalogueDao.insertCatalogue(new Catalogue("4", "Bánh sandwich"));
+
+            CustomerDaoImp customerDao = new CustomerDaoImp();
+            customerDao.insertCustomer(new Customer("001", "Lê Anh Hào", "044 324 6566"));
+            customerDao.insertCustomer(new Customer("002", "Lê Anh Hiệp", "044 324 6566"));
+            customerDao.insertCustomer(new Customer("003", "Lê Anh Hảo", "044 324 6566"));
+            customerDao.insertCustomer(new Customer("004", "Lê Nguyên Tuấn", "044 324 6566"));
+            customerDao.insertCustomer(new Customer("005", "Lê Nguyên Hào", "044 324 6566"));
+            customerDao.insertCustomer(new Customer("006", "Trần Anh Hiệp", "044 324 6566"));
+            customerDao.insertCustomer(new Customer("007", "Hồ Thảo Vy", "044 324 6566"));
+
+            CakeDaoImp cakeDaoImp = new CakeDaoImp();
+            cakeDaoImp.insertCake(new Cake("001", "1", "AURORA CAKE", 405000, "Bánh làm từ 4 lớp gato trắng kết hợp với 4 lớp kem tươi. Bánh phủ bên ngoài bởi 1 lớp kem tươi màu trắng xanh, có phụ kiện gắn kèm sinh động."));
+            cakeDaoImp.insertCake(new Cake("002", "1", "BÁNH 3D DOREMON", 300000, "Bánh làm từ 3 lớp gato xen lẫn 3 lớp kem. Bên ngoài bánh vẽ bằng kem tiramisu vị coffee dạng xù."));
+            cakeDaoImp.insertCake(new Cake("003", "1", "BÁNH IN ẢNH DOREMON", 200000, "Phần kem nhiều màu sắc trên bánh chỉ để trang trí, quý khách nên gạt bỏ phần đó ra ngoài trước khi ăn để đảm bảo thẩm mỹ và hương vị tự nhiên của bánh."));
+            cakeDaoImp.insertCake(new Cake("004", "2", "BÁNH MÌ BAGUETTE", 9000, "Bánh mì BAGUETTE là loại ổ bánh mì phân biệt được vì chiều dài hơn chiều rộng nhiều và nó có vỏ giòn."));
+            cakeDaoImp.insertCake(new Cake("005", "2", "BÁNH MÌ HOA CÚC", 60000, "Brioche là một loại bánh mì có nguồn gốc từ Pháp tương tự như một loại bánh ngọt rất phong phú, và có hàm lượng trứng và bơ cao mang lại cho nó một lớp vỏ giòn và đậm đà."));
+            cakeDaoImp.insertCake(new Cake("006", "2", "BÁNH NHÂN NHO", 12000, "Với một kiểu cuộn bột khác, thêm một lớp kem và vanille rồi rắc nho khô lên trên."));
+            cakeDaoImp.insertCake(new Cake("007", "3", "BÁNH LƯỠI MÈO", 60000, "Bánh quy lưỡi mèo hay bánh quy lưỡi mèo là một loại bánh quy hoặc thanh sô cô la nhỏ có sẵn ở một số quốc gia châu Âu, châu Á và Nam Mỹ."));
+            cakeDaoImp.insertCake(new Cake("008", "3", "BÁNH COCONUT - DỪA", 42000, "Chẹp... Em bánh quy dừa này ắt hẳn sẽ làm hài lòng những bạn hảo ngọt ngày Tết đây. Bánh rất rất .... Phải nói là rất thơm ..."));
+            cakeDaoImp.insertCake(new Cake("009", "4", "SỪNG BÒ - CROISSANT", 12000, "Bánh được làm từ những lớp bột mỏng cán đều xếp trồng lên nhau."));
+            cakeDaoImp.insertCake(new Cake("010", "4", "BÁNH MÌ ĐEN", 15000, "DARK RYE BREAD - Bánh Mì Đen ăn kiêng dành cho Giảm Cân và Sức Khỏe ❤ Bánh Mì Đen là nguồn tinh bột tốt làm từ Lúa Mạch Đen."));
+
+            CakeImageDaoImp cakeImageDaoImp = new CakeImageDaoImp();
+            cakeImageDaoImp.insertCakeImage(new CakeImage("001", "01.jpg"));
+            cakeImageDaoImp.insertCakeImage(new CakeImage("001", "02.jpg"));
+            cakeImageDaoImp.insertCakeImage(new CakeImage("003", "03.jpg"));
+            cakeImageDaoImp.insertCakeImage(new CakeImage("003", "04.jpg"));
+            cakeImageDaoImp.insertCakeImage(new CakeImage("002", "05.jpg"));
+            cakeImageDaoImp.insertCakeImage(new CakeImage("002", "06.jpg"));
+            cakeImageDaoImp.insertCakeImage(new CakeImage("004", "07.jpg"));
+            cakeImageDaoImp.insertCakeImage(new CakeImage("004", "08.jpg"));
+            cakeImageDaoImp.insertCakeImage(new CakeImage("005", "09.jpg"));
+            cakeImageDaoImp.insertCakeImage(new CakeImage("005", "10.jpg"));
+            cakeImageDaoImp.insertCakeImage(new CakeImage("006", "11.jpg"));
+            cakeImageDaoImp.insertCakeImage(new CakeImage("006", "12.jpg"));
+            cakeImageDaoImp.insertCakeImage(new CakeImage("007", "13.jpg"));
+            cakeImageDaoImp.insertCakeImage(new CakeImage("007", "14.jpg"));
+            cakeImageDaoImp.insertCakeImage(new CakeImage("008", "15.jpg"));
+            cakeImageDaoImp.insertCakeImage(new CakeImage("008", "16.jpg"));
+            cakeImageDaoImp.insertCakeImage(new CakeImage("009", "17.jpg"));
+            cakeImageDaoImp.insertCakeImage(new CakeImage("009", "18.jpg"));
+            cakeImageDaoImp.insertCakeImage(new CakeImage("010", "19.jpg"));
+            cakeImageDaoImp.insertCakeImage(new CakeImage("010", "20.jpg"));
+
+            BillDaoImp billDaoImp = new BillDaoImp();
+            billDaoImp.insertBill(new Bill("001", "001", "02/01/2021"));
+            billDaoImp.insertBill(new Bill("002", "004", "02/01/2021"));
+            billDaoImp.insertBill(new Bill("003", "003", "03/01/2021"));
+            billDaoImp.insertBill(new Bill("004", "002", "04/01/2021"));
+            billDaoImp.insertBill(new Bill("005", "005", "06/01/2021"));
+            billDaoImp.insertBill(new Bill("006", "006", "06/01/2021"));
+            billDaoImp.insertBill(new Bill("007", "007", "01/01/2021"));
+
+            DetailDaoImp detailDaoImp = new DetailDaoImp();
+            detailDaoImp.insertDetailBill(new DetailBill("001", "003", 1));
+            detailDaoImp.insertDetailBill(new DetailBill("003", "004", 3));
+            detailDaoImp.insertDetailBill(new DetailBill("002", "003", 4));
+            detailDaoImp.insertDetailBill(new DetailBill("003", "007", 3));
+            detailDaoImp.insertDetailBill(new DetailBill("004", "004", 2));
+            detailDaoImp.insertDetailBill(new DetailBill("003", "008", 4));
+            detailDaoImp.insertDetailBill(new DetailBill("001", "005", 6));
+            detailDaoImp.insertDetailBill(new DetailBill("003", "009", 7));
+            detailDaoImp.insertDetailBill(new DetailBill("004", "010", 1));
+            detailDaoImp.insertDetailBill(new DetailBill("006", "002", 1));
+            detailDaoImp.insertDetailBill(new DetailBill("007", "003", 2));
+            detailDaoImp.insertDetailBill(new DetailBill("003", "006", 4));
+            detailDaoImp.insertDetailBill(new DetailBill("002", "002", 4));
+            detailDaoImp.insertDetailBill(new DetailBill("004", "003", 3));
+            detailDaoImp.insertDetailBill(new DetailBill("002", "005", 7));
+            detailDaoImp.insertDetailBill(new DetailBill("006", "007", 3));
+            detailDaoImp.insertDetailBill(new DetailBill("004", "007", 2));
+            detailDaoImp.insertDetailBill(new DetailBill("005", "008", 1));
+            detailDaoImp.insertDetailBill(new DetailBill("002", "004", 1));
+
         }
 
         private void createDefaultTable()

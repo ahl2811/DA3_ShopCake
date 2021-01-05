@@ -181,6 +181,23 @@ CAKE: CAKE_ID (PK), CATALOGUE_ID (FK), CAKE_NAME, PRICE (INT), IMAGE (TEXT)
             return newId;
         }
 
+        public List<Cake> GetCakesByType(int type)
+        {
+            List<Cake> rs = new List<Cake>();
+            foreach(Cake c in cakes)
+            {
+                int num;
+                bool success = Int32.TryParse(c.CatalogueId, out num);
+
+                if(success && num == type)
+                {
+                    rs.Add(c);
+                }
+            }
+
+            return rs;
+        }
+
     }
 
 }

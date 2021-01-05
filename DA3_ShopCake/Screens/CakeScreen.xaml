@@ -7,27 +7,27 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        
+
 
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Assets/icons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <Style x:Key="ButtonStyle" TargetType="{x:Type ToggleButton}">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ToggleButton}">
-                        <Border Background="Transparent" >
-                            <ContentPresenter/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+                            <Border Background="Transparent" >
+                                <ContentPresenter/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
             <Style x:Key ="MenuButtonStyle" TargetType="{x:Type Button}">
                 <Setter Property="Background" Value="WhiteSmoke"/>
                 <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -74,49 +74,56 @@
 
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
-        <TextBlock FontSize="30" Foreground="Orange" Margin="200" Name="CateName"/>
-        <WrapPanel ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible">
-            <Border CornerRadius="10" Height="150" Width="160" Margin="10" BorderBrush="Orange"
+    <Border BorderThickness="0" CornerRadius="10" Background="#fffffe" Margin="0,10,10,10">
+        <ListView x:Name="CakeListView" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="Transparent"
+                      BorderThickness="0" >
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border CornerRadius="10" Height="150" Width="160" Margin="10" BorderBrush="Orange"
                                         BorderThickness="0.8" Name="itemBorder">
-                <Border.Background>
-                    <ImageBrush ImageSource="/Assets/Images/bread.jpeg" RenderOptions.BitmapScalingMode="HighQuality"
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Assets/Images/bread.jpeg" RenderOptions.BitmapScalingMode="HighQuality"
                                 x:Name="ImgItem"/>
-                </Border.Background>
-
-                <StackPanel>
-                    <Border CornerRadius="5,0,0,1" Width="100" Height="24" Margin="5,10" HorizontalAlignment="Left" Opacity="0.75">
-                        <Border.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
-                                <GradientStop Color="Orange" Offset="0.5"/>
-                                <GradientStop Color="Gold" Offset="0.8"/>
-                                <GradientStop Color="Transparent" Offset="0.95"/>
-                            </LinearGradientBrush>
                         </Border.Background>
-                        <TextBlock FontSize="16" Text="100.000" VerticalAlignment="Center"
+
+                        <StackPanel>
+                            <Border CornerRadius="5,0,0,1" Width="100" Height="24" Margin="5,10" HorizontalAlignment="Left" Opacity="0.75">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
+                                        <GradientStop Color="Orange" Offset="0.5"/>
+                                        <GradientStop Color="Gold" Offset="0.8"/>
+                                        <GradientStop Color="Transparent" Offset="0.95"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <TextBlock FontSize="16" Text="{Binding Price}" VerticalAlignment="Center"
                                                        FontWeight="Bold" Margin="7,0,0,0">
-                            <TextBlock.Foreground>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="Red" Offset="0.3"/>
-                                    <GradientStop Color="OrangeRed" Offset="0.6"/>
-                                </LinearGradientBrush>
-                            </TextBlock.Foreground>
-                        </TextBlock>
-                    </Border>
+                                    <TextBlock.Foreground>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Color="Red" Offset="0.3"/>
+                                            <GradientStop Color="OrangeRed" Offset="0.6"/>
+                                        </LinearGradientBrush>
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                            </Border>
 
-                    <Border CornerRadius="0,5,5,10"  Width="150" Height="50" Margin="5,0,5,0" HorizontalAlignment="Left" Opacity="0.7">
-                        <Border.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
-                                <GradientStop Color="#fefefe" Offset="0.6"/>
-                                <GradientStop Color="WhiteSmoke" Offset="0.8"/>
-                                <GradientStop Color="Transparent" Offset="0.95"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
-                        <TextBlock FontSize="15" Text="Set Cupcakes CupCake pla pla" Foreground="DimGray" VerticalAlignment="Center"
+                            <Border CornerRadius="0,5,5,10"  Width="150" Height="50" Margin="5,0,5,0" HorizontalAlignment="Left" Opacity="0.7">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
+                                        <GradientStop Color="#fefefe" Offset="0.6"/>
+                                        <GradientStop Color="WhiteSmoke" Offset="0.8"/>
+                                        <GradientStop Color="Transparent" Offset="0.95"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <TextBlock FontSize="15" Text="{Binding Name}" Foreground="DimGray" VerticalAlignment="Center"
                                                        FontWeight="Black" Margin="7,0,0,0" TextWrapping="Wrap"/>
-                    </Border>
+                            </Border>
 
-                    <Button
+                            <Button
                         Name="LearnMoreButton"
                         Style="{StaticResource MenuButtonStyle}"
                         Tag="{StaticResource right}"
@@ -124,85 +131,86 @@
                         Margin="0,5,0,0" Opacity="0.8"
                         />
 
-                    <Button FontSize="14" x:Name="AddToOrderButton" VerticalAlignment="Center" HorizontalAlignment="Center"
-                            Margin="125,0,0,5">
-                        <Image Source="/Assets/Icons/uncheck.png"/>
-                        <Button.Style>
-                            <Style TargetType="{x:Type Button}">
-                                <Setter Property="Height" Value="28"/>
-                                <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="Width" Value="28"/>
-                                <Setter Property="HorizontalAlignment" Value="Left"/>
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="{x:Type Button}">
-                                            <Border CornerRadius="14"
+                            <Button FontSize="14" x:Name="AddToOrderButton" VerticalAlignment="Center" HorizontalAlignment="Center"
+                            Margin="125,0,0,5" Click="AddToOrderButton_Click">
+                                <Image Source="/Assets/Icons/uncheck.png"/>
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Height" Value="28"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                        <Setter Property="Width" Value="28"/>
+                                        <Setter Property="HorizontalAlignment" Value="Left"/>
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border CornerRadius="14"
                                                                         Background="{TemplateBinding Background}"
                                                                         BorderThickness ="0">
-                                                <Border.BorderBrush>
-                                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                                        <GradientStop Color="OrangeRed" Offset="0.1"/>
-                                                        <GradientStop Color="Orange" Offset="0.5"/>
-                                                    </LinearGradientBrush>
-                                                </Border.BorderBrush>
+                                                        <Border.BorderBrush>
+                                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                                                <GradientStop Color="OrangeRed" Offset="0.1"/>
+                                                                <GradientStop Color="Orange" Offset="0.5"/>
+                                                            </LinearGradientBrush>
+                                                        </Border.BorderBrush>
 
-                                                <Grid>
-                                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                        <Grid>
+                                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
                                                                       Content="{TemplateBinding Content}">
-                                                    </ContentPresenter>
-                                                </Grid>
-                                            </Border>
-                                            <ControlTemplate.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Background" Value="#FFCC99"></Setter>
-                                                </Trigger>
-                                                <Trigger Property="IsPressed" Value="True">
-                                                    <Setter Property="Background" Value="#FFDEAD"></Setter>
-                                                </Trigger>
-                                            </ControlTemplate.Triggers>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </Button.Style>
-                    </Button>
-                    <Button
+                                                            </ContentPresenter>
+                                                        </Grid>
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Background" Value="#FFCC99"></Setter>
+                                                        </Trigger>
+                                                        <Trigger Property="IsPressed" Value="True">
+                                                            <Setter Property="Background" Value="#FFDEAD"></Setter>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                            <Button
                     Click="onPurchase"
                      BorderThickness="0"
                      Foreground="White"
                      Height="50"
                      Width="120"
                     >
-                        <Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="10"/>
-                            </Style>
-                        </Button.Resources>
+                                <Button.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                    </Style>
+                                </Button.Resources>
 
-                        <Button.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                                <GradientStop Color="#1f8545" Offset="0.1"/>
-                                <GradientStop Color="#7CFC04" Offset="0.8"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                        <Button.Content>
-                            <Grid>
-                                <TextBlock Text="Cập nhật"
+                                <Button.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                        <GradientStop Color="#1f8545" Offset="0.1"/>
+                                        <GradientStop Color="#7CFC04" Offset="0.8"/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                                <Button.Content>
+                                    <Grid>
+                                        <TextBlock Text="Cập nhật"
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
                                            FontWeight="Regular"
                                                        FontSize="18"
                                            />
-                            </Grid>
-                        </Button.Content>
+                                    </Grid>
+                                </Button.Content>
 
-                    </Button>
+                            </Button>
 
-                </StackPanel>
-            </Border>
-
-        </WrapPanel>
-    </Grid>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Border>
 </UserControl>

@@ -97,6 +97,7 @@
     </Compile>
     <Compile Include="utils\Calculation.cs" />
     <Compile Include="utils\StringHelper.cs" />
+    <Compile Include="ViewModels\CakeScreenVM.cs" />
     <Page Include="Assets\icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -168,9 +169,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Assets\Icons\search.png" />
   </ItemGroup>

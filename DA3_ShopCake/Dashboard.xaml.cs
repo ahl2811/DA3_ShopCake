@@ -42,11 +42,11 @@ namespace DA3_ShopCake
             selectedCakes = new ObservableCollection<Cake>();
 
             //following code for testing function
-            foreach (Cake cake in cakeDao.GetCakes())
-            {
-                selectedCakes.Add(cake);
-                numPurchases.Add(new KeyValuePair<string, int>(cake.Id, 1));
-            }
+            //foreach (Cake cake in cakeDao.GetCakes())
+            //{
+            //    selectedCakes.Add(cake);
+            //    numPurchases.Add(new KeyValuePair<string, int>(cake.Id, 1));
+            //}
 
             lbSelectedPurchases.ItemsSource = selectedCakes;
             updateTmpCostTextBlock();
@@ -296,7 +296,6 @@ namespace DA3_ShopCake
 
         private void NavigateTo(UserControl screen)
         {
-            rightTab.Visibility = Visibility.Hidden;
 
             ScreenStack.Push(screen);
             MainScreen.Children.Clear();
@@ -305,8 +304,6 @@ namespace DA3_ShopCake
 
         private bool NavigateBackAndUpdateData(UserControl screen)
         {
-            rightTab.Visibility = Visibility.Visible;
-
             if (ScreenStack.Count <= 1)
             {
                 return false;
@@ -314,6 +311,7 @@ namespace DA3_ShopCake
             ScreenStack.Pop();
             ScreenStack.Pop();
             NavigateTo(screen);
+            HiddenOrderScreen();
             return true;
         }
 
@@ -357,10 +355,33 @@ namespace DA3_ShopCake
             CategoryList.Visibility = Visibility.Visible;
             var screen = new CakeScreen((int)CakeType.BirthdayCake);
             screen.LearnMoreHandler += Screen_LearnMoreHandler;
+            screen.AddToOrderHandler += Screen_AddToOrderHandler;
             ShowOrderScreen();
             SetRootScreen(screen);
         }
 
+        private void Screen_AddToOrderHandler(string cakeCode)
+        {
+            CakeDaoImp cakeDao = new CakeDaoImp();
+            Cake cake = cakeDao.getCakeById(cakeCode);
+            AddToOrderList(cake);
+        }
+
+        private void AddToOrderList(Cake cake)
+        {
+            foreach(Cake c in selectedCakes)
+            {
+                if(c.Id == cake.Id)
+                {
+                    MessageBox.Show("Sản phẩm đã tồn tại trong giỏ hàng");
+                    return;
+                }
+            }
+            selectedCakes.Add(cake);
+            numPurchases.Add(new KeyValuePair<string, int>(cake.Id, 1));
+            updateTmpCostTextBlock();
+            updateLastCostTextBlock();
+        }
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -448,6 +469,7 @@ namespace DA3_ShopCake
             var detailScreen = new CakeDetailScreen(cakeCode);
             detailScreen.ExitHandler += DetailScreen_ExitHandler;
             detailScreen.UpdateHandler += DetailScreen_UpdateHandler;
+            
             NavigateBackAndUpdateData(detailScreen);
         }
 
@@ -502,6 +524,8 @@ namespace DA3_ShopCake
             int cakeType = (int)CakeType.BirthdayCake;
             var screen = new CakeScreen(cakeType);
             screen.LearnMoreHandler += Screen_LearnMoreHandler;
+            screen.AddToOrderHandler += Screen_AddToOrderHandler;
+            ShowOrderScreen();
             SetRootScreen(screen);
         }
 
@@ -510,6 +534,8 @@ namespace DA3_ShopCake
             int cakeType = (int)CakeType.Bread;
             var screen = new CakeScreen(cakeType);
             screen.LearnMoreHandler += Screen_LearnMoreHandler;
+            screen.AddToOrderHandler += Screen_AddToOrderHandler;
+            ShowOrderScreen();
             SetRootScreen(screen);
         }
 
@@ -518,6 +544,8 @@ namespace DA3_ShopCake
             int cakeType = (int)CakeType.CupCake;
             var screen = new CakeScreen(cakeType);
             screen.LearnMoreHandler += Screen_LearnMoreHandler;
+            screen.AddToOrderHandler += Screen_AddToOrderHandler;
+            ShowOrderScreen();
             SetRootScreen(screen);
         }
 
@@ -526,6 +554,8 @@ namespace DA3_ShopCake
             int cakeType = (int)CakeType.SlicedBread;
             var screen = new CakeScreen(cakeType);
             screen.LearnMoreHandler += Screen_LearnMoreHandler;
+            screen.AddToOrderHandler += Screen_AddToOrderHandler;
+            ShowOrderScreen();
             SetRootScreen(screen);
         }
 
@@ -536,10 +566,11 @@ namespace DA3_ShopCake
                 MessageBox.Show("Giỏ hàng rỗng");
                 return;
             }
+
             var creatBillScreen = new CreatingBillScreen(numPurchases, Double.Parse(txtLastCost.Text));
             creatBillScreen.ExitHandler += CreatBillScreen_ExitHandler;
             creatBillScreen.SubmitHandler += CreatBillScreen_SubmitHandler;
-
+            HiddenOrderScreen();
             NavigateTo(creatBillScreen);
         }
 
@@ -547,6 +578,7 @@ namespace DA3_ShopCake
         {
             CategoryList.Visibility = Visibility.Hidden;
             HistoryOrderButton.IsChecked = true;
+          
             ShowHistoryScreen();
         }
 

@@ -36,8 +36,9 @@ namespace DA3_ShopCake.db
                 {
                     CakeImage cakeImage = new CakeImage();
 
+                    var currentFolder = AppDomain.CurrentDomain.BaseDirectory;
                     cakeImage.CakeId = reader[0].ToString();
-                    cakeImage.Image = reader[1].ToString();
+                    cakeImage.Image = $"{currentFolder}Assets\\Images\\{reader[1].ToString()}";
 
                     cakeImages.Add(cakeImage);
                 }
@@ -84,6 +85,20 @@ namespace DA3_ShopCake.db
             }
         }
 
+        public CakeImage getImagebyCakeID(String id)
+        {
+            CakeImage image = null;
+            foreach (CakeImage img in cakeImages)
+            {
+                if (img.CakeId == id)
+                {
+                    image = new CakeImage(img.CakeId, img.Image);
+                    break;
+                }
+            }
+
+            return image;
+        }
         
     }
 }

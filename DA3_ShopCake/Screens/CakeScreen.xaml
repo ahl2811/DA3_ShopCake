@@ -87,7 +87,7 @@
                     <Border CornerRadius="10" Height="150" Width="160" Margin="10" BorderBrush="Orange"
                                         BorderThickness="0.8" Name="itemBorder">
                         <Border.Background>
-                            <ImageBrush ImageSource="/Assets/Images/bread.jpeg" RenderOptions.BitmapScalingMode="HighQuality"
+                            <ImageBrush ImageSource= "{Binding Image}" RenderOptions.BitmapScalingMode="HighQuality"
                                 x:Name="ImgItem"/>
                         </Border.Background>
 

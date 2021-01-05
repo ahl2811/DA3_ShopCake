@@ -1,7 +1,6 @@
 D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_ShopCake\DA3_ShopCake\bin\Debug\DA3_ShopCake.exe.config
 D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_ShopCake\DA3_ShopCake\bin\Debug\DA3_ShopCake.exe
 D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_ShopCake\DA3_ShopCake\bin\Debug\DA3_ShopCake.pdb
-D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_ShopCake\DA3_ShopCake\obj\Debug\DA3_ShopCake.csprojAssemblyReference.cache
 D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Assets\icons.baml
 D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Dashboard.g.cs
 D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Screens\CakeDetailScreen.g.cs
@@ -29,3 +28,6 @@ D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_
 D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_ShopCake\DA3_ShopCake\obj\Debug\DA3_ShopCake.csproj.CoreCompileInputs.cache
 D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_ShopCake\DA3_ShopCake\obj\Debug\DA3_ShopCake.exe
 D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_ShopCake\DA3_ShopCake\obj\Debug\DA3_ShopCake.pdb
+D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_ShopCake\DA3_ShopCake\obj\Debug\DA3_ShopCake.csprojAssemblyReference.cache
+D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Screens\SplashScreen.g.cs
+D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Screens\SplashScreen.baml

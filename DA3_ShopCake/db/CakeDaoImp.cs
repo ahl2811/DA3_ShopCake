@@ -22,7 +22,7 @@ namespace ConsoleApp2.db
             string strConn = $"Server=localhost; Database=QLTiemBanh; Trusted_Connection=True;";
             SqlConnection sqlConnection = new SqlConnection(strConn);
             SqlCommand sqlCommand = new SqlCommand();
-            String query = "select * from CAKE";
+            String query = "select A.CAKE_ID, B.CATALOGUE_ID, B.CAKE_NAME, B.PRICE, B.DESCRIPTION, A.IMAGE from CAKEIMAGE as A join CAKE as B on A.CAKE_ID = B.CAKE_ID where A.IMAGE = (select top(1) IMAGE from CAKEIMAGE where CAKE_ID = B.CAKE_ID)";
 
             try
             {
@@ -35,12 +35,14 @@ namespace ConsoleApp2.db
                 while (reader.Read())
                 {
                     Cake cake = new Cake();
-                    
+                    var currentFolder = AppDomain.CurrentDomain.BaseDirectory;
+
                     cake.Id = reader[0].ToString();
                     cake.CatalogueId = reader[1].ToString();
                     cake.Name = reader[2].ToString();
                     cake.Price = Int32.Parse(reader[3].ToString());
                     cake.Description = reader[4].ToString();
+                    cake.Image = $"{currentFolder}Assets\\Images\\{reader[5].ToString()}";
 
                     cakes.Add(cake);
                 }

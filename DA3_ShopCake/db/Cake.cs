@@ -10,6 +10,7 @@ namespace ConsoleApp2.db
     class Cake
     {
         public String Id { get; set; }
+        public String Image { get; set; }
         public String CatalogueId { get; set; }
         public String Name { get; set; }
         public int Price { get; set; }

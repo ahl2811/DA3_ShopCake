@@ -28,6 +28,9 @@ namespace DA3_ShopCake.Screens
         public delegate void DelegateUpdate(string cakeCode);
         public event DelegateUpdate UpdateHandler;
 
+        public delegate void Detail_Delegate(string cakeCode);
+        public event Detail_Delegate AddToOrderHandler;
+
         private string cakeCode;
         private CakeDaoImp cakeDao;
         private ObservableCollection<CakeImage> cakeImages;
@@ -44,7 +47,7 @@ namespace DA3_ShopCake.Screens
                 if(cake.Id.Equals(cakeCode))
                 {
                     txtCakeName.Text = cake.Name;
-                    txtId.Text = cake.Id;
+                    //txtId.Text = cake.Id;
                     txtPrice.Text = cake.Price.ToString();
                     txtDescription.Text = cake.Description;
 
@@ -61,14 +64,24 @@ namespace DA3_ShopCake.Screens
 
                     if(cakeImages.Count() > 0)
                     {
-                        Uri uri = new Uri(cakeImages[0].Image, UriKind.RelativeOrAbsolute);
-                        imgCake.Source = new BitmapImage(uri);
+                        //Uri uri = new Uri(cakeImages[0].Image, UriKind.RelativeOrAbsolute);
+                        //imgCake.Source = new BitmapImage(uri);
+
+                        try
+                        {
+                            var bitmap = new BitmapImage(new Uri(cakeImages[0].Image, UriKind.RelativeOrAbsolute));
+                            mainImage.ImageSource = bitmap;
+                        }
+                        catch (Exception)
+                        {
+
+                        }
                     }
-                    else
-                    {
-                        Uri uri = new Uri("../Assets/Images/bread.jpg", UriKind.RelativeOrAbsolute);
-                        imgCake.Source = new BitmapImage(uri);
-                    }
+                    //else
+                    //{
+                    //    Uri uri = new Uri(".../Assets/Images/bread.jpeg", UriKind.RelativeOrAbsolute);
+                    //    mainImage.ImageSource = new BitmapImage(uri);
+                    //}
                     break;
                 }
             }
@@ -103,9 +116,14 @@ namespace DA3_ShopCake.Screens
                 if(cakeImage != null)
                 {
                     Uri uri = new Uri(cakeImage.Image, UriKind.RelativeOrAbsolute);
-                    imgCake.Source = new BitmapImage(uri);
+                    mainImage.ImageSource = new BitmapImage(uri);
                 }
             }
+        }
+
+        private void addToCartButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddToOrderHandler?.Invoke(this.cakeCode);
         }
     }
 }

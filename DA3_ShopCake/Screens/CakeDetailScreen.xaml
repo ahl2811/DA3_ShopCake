@@ -6,142 +6,259 @@
              xmlns:local="clr-namespace:DA3_ShopCake.Screens"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="9*"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
+    <Border BorderThickness="0" CornerRadius="10" Background="#fffffe" Margin="0,10,10,10">
 
-        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top">
-            <Image x:Name="imgCake" Height="250"/>
-            <ListBox PreviewMouseDown="PlaceholdersListBox_OnPreviewMouseDown" ScrollViewer.VerticalScrollBarVisibility="Disabled" MinHeight="150" MaxHeight="300" HorizontalAlignment="Left" Margin="20,0,0,0" Background="#E8E8E8" BorderThickness="0" BorderBrush="Transparent" Name="lbImages" HorizontalContentAlignment="Stretch">
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation='Horizontal'/>
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Margin="0,2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Image MaxHeight="75"
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,5">
+                <TextBlock Text="Chi tiết sản phẩm" FontSize="33" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock.Foreground>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="OrangeRed" Offset="0.0" />
+                            <GradientStop Color="Orange" Offset="0.75" />
+                        </LinearGradientBrush>
+                    </TextBlock.Foreground>
+                </TextBlock>
+            </Grid>
+            
+            <Grid Grid.Column="0" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2.6*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border CornerRadius="10" BorderThickness="1" BorderBrush="WhiteSmoke" Width="auto" Height="auto" Margin="10,5,10,0">
+                    <Border.Background>
+                        <ImageBrush x:Name="mainImage" ImageSource="/Assets/Images/bread.jpeg"/>
+                    </Border.Background>
+                </Border>
+
+                <Border CornerRadius="10" Background="WhiteSmoke" Margin="10,10,10,0" BorderThickness="0" Grid.Row="1">
+                    <ListBox PreviewMouseDown="PlaceholdersListBox_OnPreviewMouseDown" ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                             MinHeight="80" MaxHeight="100" HorizontalAlignment="Left" Margin="10,0,0,0" Background="Transparent" BorderThickness="0" BorderBrush="Transparent" Name="lbImages" 
+                             HorizontalContentAlignment="Left" VerticalContentAlignment="Center">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation='Horizontal'/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image MaxHeight="60"
                                    MaxWidth="125"
                                    Source="{Binding Image}"></Image>
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Border>
 
-        <StackPanel Margin="0,20,0,0" Orientation="Vertical" Grid.Row="0" Grid.Column="1">
-            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <Label Content="Tên bánh:"  Foreground="Orange" FontSize="24"></Label>
-                <TextBlock Height="30" Margin="20,5,0,0" HorizontalAlignment="Left"
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <Button Click="exitDetailButton_Click" BorderThickness="0" HorizontalAlignment="Right" Foreground="White"  Height="40"
+                        Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="40,0"
+                    >
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                <GradientStop Color="#848484" Offset="0.1"/>
+                                <GradientStop Color="#DCDCDC" Offset="0.8"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        <Button.Content>
+                            <Grid>
+                                <TextBlock Text="Quay lại"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontWeight="Regular"
+                                                       FontSize="18"
+                                           />
+                            </Grid>
+                        </Button.Content>
+
+                    </Button>
+
+                <Grid Grid.Column="1">
+                    <Button
+                    Click="updateDetailButton_Click"
+                     Margin="40,0"
+                     BorderThickness="0"
+                     HorizontalAlignment="Left"
+                     Foreground="White"
+                     Height="40"
+                     Width="120"
+                     HorizontalContentAlignment="Center"
+                     VerticalContentAlignment="Center"
+                    >
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                <GradientStop Color="#1f8545" Offset="0.1"/>
+                                <GradientStop Color="#7CFC04" Offset="0.8"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        <Button.Content>
+                            <Grid>
+                                <TextBlock Text="Cập nhật"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontWeight="Regular"
+                                                       FontSize="18"
+                                           />
+                            </Grid>
+                        </Button.Content>
+
+                    </Button>
+                </Grid>
+                    
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="1" Margin="25,0,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Margin="0,5,0,0">
+                    <TextBlock Text="The Name Of The Banh" FontSize="30" TextWrapping="Wrap" FontWeight="Black" Foreground="DimGray" Name="txtCakeName"/>
+                    <Separator Margin="0,10" BorderBrush="LightGray" Height="5" Width="60"  BorderThickness="10" HorizontalAlignment="Left"/>
+                    
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Assets/Icons/price.png" Width="24"/>
+                        <TextBlock Text="100.000" FontSize="24" FontWeight="Bold" Foreground="Gray" Margin="5,0,0,0" Name="txtPrice"/>
+                        <TextBlock Text=" VND" FontSize="24" FontWeight="Bold" Foreground="Gray" Margin="5,0,0,0"/>
+                        
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Assets/Icons/describe.png" Width="20"></Image>
+                        <TextBlock Text="Mô tả" FontSize="20" FontWeight="DemiBold" Foreground="DarkGray" TextDecorations="underline"
+                               Margin="5,10"/>
+                    </StackPanel>
+
+                    <TextBlock Name="txtDescription" FontSize="18" Foreground="Silver" 
+                               TextWrapping="Wrap"
+                               Text="Whole wheat 12 grain bread – Bánh 12 Hạt Nguyên Cám, một trong những loại bánh mặc nhiên có mặt trong mỗi đơn hàng từ đối tác của La Vita Bakery " Margin="5,0"/>
+                </StackPanel>
+
+                <Grid Grid.Row="1">
+                    <Button
+                        x:Name="addToCartButton"
+                    Click="addToCartButton_Click"
+                     BorderThickness="0"
+                     Foreground="White"
+                     Height="50"
+                     Width="200"
+                     HorizontalContentAlignment="Center"
+                     VerticalContentAlignment="Center"
+                        VerticalAlignment="Center"
+                    >
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                <GradientStop Color="Orange" Offset="0.1"/>
+                                <GradientStop Color="OrangeRed" Offset="0.8"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        <Button.Content>
+                            <Grid>
+                                <TextBlock Text="Thêm vào giỏ hàng"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontWeight="Regular"
+                                                       FontSize="18"
+                                           />
+                            </Grid>
+                        </Button.Content>
+
+                    </Button>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        
+        
+        <!--<Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+
+            <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top">
+                <Image x:Name="imgCake" Height="250"/>
+                
+            </StackPanel>
+
+            <StackPanel Margin="0,20,0,0" Orientation="Vertical" Grid.Row="0" Grid.Column="1">
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Content="Tên bánh:"  Foreground="Orange" FontSize="24"></Label>
+                    <TextBlock Height="30" Margin="20,5,0,0" HorizontalAlignment="Left"
                      MinWidth="200" Name="txtCakeName"
                      Foreground="Olive" FontSize="22"
                      MaxWidth="4000"></TextBlock>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <Label Content="ID:"  Foreground="Orange" FontSize="24"></Label>
-                <TextBlock Height="30" Margin="20,5,0,0" HorizontalAlignment="Left"
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Content="ID:"  Foreground="Orange" FontSize="24"></Label>
+                    <TextBlock Height="30" Margin="20,5,0,0" HorizontalAlignment="Left"
                      MinWidth="200" Name="txtId"
                      Foreground="Olive" FontSize="22"
                      MaxWidth="4000"></TextBlock>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <Label Content="Giá:"  Foreground="Orange" FontSize="24"></Label>
-                <TextBlock Height="30" Margin="20,5,0,0" HorizontalAlignment="Left"
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Content="Giá:"  Foreground="Orange" FontSize="24"></Label>
+                    <TextBlock Height="30" Margin="20,5,0,0" HorizontalAlignment="Left"
                      MinWidth="200" Name="txtPrice"
                      Foreground="Olive" FontSize="22"
                      MaxWidth="4000"></TextBlock>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="0,10,0,0">
-                <Label Content="Mô tả:"  Foreground="Orange" FontSize="24"></Label>
-                <TextBlock Height="30" Margin="20,5,0,0" HorizontalAlignment="Left"
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="0,10,0,0">
+                    <Label Content="Mô tả:"  Foreground="Orange" FontSize="24"></Label>
+                    <TextBlock Height="30" Margin="20,5,0,0" HorizontalAlignment="Left"
                      MinWidth="200" Name="txtDescription"
                      Foreground="Olive" FontSize="22"
                      MaxWidth="4000"></TextBlock>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
 
-        <StackPanel HorizontalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal">
-            <Button
-                    Click="exitDetailButton_Click"
-                     Margin="0,0,75,0"
-                     BorderThickness="0"
-                     
-                     Foreground="White"
-                     Height="50"
-                     Width="120"
-                     HorizontalContentAlignment="Center"
-                     VerticalContentAlignment="Center"
-                    >
-                <Button.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="10"/>
-                    </Style>
-                </Button.Resources>
-
-                <Button.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                        <GradientStop Color="#848484" Offset="0.1"/>
-                        <GradientStop Color="#DCDCDC" Offset="0.8"/>
-                    </LinearGradientBrush>
-                </Button.Background>
-                <Button.Content>
-                    <Grid>
-                        <TextBlock Text="Quay lại"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           FontWeight="Regular"
-                                                       FontSize="18"
-                                           />
-                    </Grid>
-                </Button.Content>
-
-            </Button>
-
-            <Button
-                    Click="updateDetailButton_Click"
-                     Margin="15,0"
-                     BorderThickness="0"
-                     
-                     Foreground="White"
-                     Height="50"
-                     Width="120"
-                     HorizontalContentAlignment="Center"
-                     VerticalContentAlignment="Center"
-                    >
-                <Button.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="10"/>
-                    </Style>
-                </Button.Resources>
-
-                <Button.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                        <GradientStop Color="#1f8545" Offset="0.1"/>
-                        <GradientStop Color="#7CFC04" Offset="0.8"/>
-                    </LinearGradientBrush>
-                </Button.Background>
-                <Button.Content>
-                    <Grid>
-                        <TextBlock Text="Cập nhật"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           FontWeight="Regular"
-                                                       FontSize="18"
-                                           />
-                    </Grid>
-                </Button.Content>
-
-            </Button>
-        </StackPanel>
-    </Grid>
+            
+        </Grid>-->
+    </Border>
+    
 </UserControl>

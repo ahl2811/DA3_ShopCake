@@ -180,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\20.jpg" />
+    <Resource Include="Assets\Icons\describe.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icons\search.png" />
@@ -213,6 +214,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icons\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\price.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

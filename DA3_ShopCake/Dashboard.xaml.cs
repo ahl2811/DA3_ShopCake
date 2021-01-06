@@ -392,8 +392,6 @@ namespace DA3_ShopCake
 
         private bool NavigateBack()
         {
-            rightTab.Visibility = Visibility.Visible;
-
             if (ScreenStack.Count <= 1)
             {
                 return false;
@@ -452,6 +450,7 @@ namespace DA3_ShopCake
                     return;
                 }
             }
+            MessageBox.Show("Đã thêm thành công !");
             selectedCakes.Add(cake);
             numPurchases.Add(new KeyValuePair<string, int>(cake.Id, 1));
             updateTmpCostTextBlock();
@@ -488,7 +487,6 @@ namespace DA3_ShopCake
         }
         private void AddNewButton_Click(object sender, RoutedEventArgs e)
         {
-            CategoryList.Visibility = Visibility.Hidden;
             var addNewScreen = new NewAddingScreen();
             addNewScreen.SubmitHandler += AddNewScreen_SubmitHandler;
             addNewScreen.ExitHandler += AddNewScreen_ExitHandler;
@@ -527,6 +525,7 @@ namespace DA3_ShopCake
 
             detailScreen.ExitHandler += DetailScreen_ExitHandler;
             detailScreen.UpdateHandler += DetailScreen_UpdateHandler;
+            detailScreen.AddToOrderHandler += Screen_AddToOrderHandler;
             HiddenOrderScreen();
             NavigateTo(detailScreen);
         }
@@ -544,7 +543,7 @@ namespace DA3_ShopCake
             var detailScreen = new CakeDetailScreen(cakeCode);
             detailScreen.ExitHandler += DetailScreen_ExitHandler;
             detailScreen.UpdateHandler += DetailScreen_UpdateHandler;
-            
+            detailScreen.AddToOrderHandler += Screen_AddToOrderHandler;
             NavigateBackAndUpdateData(detailScreen);
         }
 
@@ -659,6 +658,7 @@ namespace DA3_ShopCake
 
         private void CreatBillScreen_ExitHandler()
         {
+            ShowOrderScreen();
             NavigateBack();
         }
 

@@ -19,7 +19,7 @@ namespace ConsoleApp2.db
         {
             cakes = new List<Cake>();
 
-            string strConn = $"Server=localhost; Database=QLTiemBanh; Trusted_Connection=True;";
+            string strConn = $"Server=localhost; Database=QLTiemBanh; Trusted_Connection=True; user id=xyz; password=abc";
             SqlConnection sqlConnection = new SqlConnection(strConn);
             SqlCommand sqlCommand = new SqlCommand();
             String query = "select A.CAKE_ID, B.CATALOGUE_ID, B.CAKE_NAME, B.PRICE, B.DESCRIPTION, A.IMAGE from CAKEIMAGE as A join CAKE as B on A.CAKE_ID = B.CAKE_ID where A.IMAGE = (select top(1) IMAGE from CAKEIMAGE where CAKE_ID = B.CAKE_ID)";
@@ -32,6 +32,7 @@ namespace ConsoleApp2.db
 
                 sqlConnection.Open();
                 SqlDataReader reader = sqlCommand.ExecuteReader();
+
                 while (reader.Read())
                 {
                     Cake cake = new Cake();

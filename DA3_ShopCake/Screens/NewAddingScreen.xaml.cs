@@ -42,7 +42,7 @@ namespace DA3_ShopCake.Screens
             newCake.Id = cakeDaoImp.getNextId();
             cakeImages = new ObservableCollection<CakeImage>();
             lbImages.ItemsSource = cakeImages;
-            txtId.Text = newCake.Id;
+            //txtId.Text = newCake.Id;
         }
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
@@ -108,6 +108,45 @@ namespace DA3_ShopCake.Screens
                 { 
                     cakeImages.Add(new CakeImage(newCake.Id, file));
                 }
+            }
+        }
+
+        private void TextBoxCakeName_GotFocus(object sender, RoutedEventArgs e)
+        {
+            keyWordCakeName.Visibility = Visibility.Hidden;
+        }
+
+        private void TextBoxCakeName_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtCakeName.Text.Length == 0)
+            {
+                keyWordCakeName.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void TextBoxPrice_GotFocus(object sender, RoutedEventArgs e)
+        {
+            keyWordPrice.Visibility = Visibility.Hidden;
+        }
+
+        private void TextBoxPrice_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtPrice.Text.Length == 0)
+            {
+                keyWordPrice.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void TextBoxDescription_GotFocus(object sender, RoutedEventArgs e)
+        {
+            keyWordDescription.Visibility = Visibility.Hidden;
+        }
+
+        private void TextBoxDescription_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtDescription.Text.Length == 0)
+            {
+                keyWordDescription.Visibility = Visibility.Visible;
             }
         }
     }

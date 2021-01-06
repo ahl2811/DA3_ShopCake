@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -48,7 +49,7 @@ namespace DA3_ShopCake.Screens
                 if (cake.Id.Equals(cakeCode))
                 {
                     txtCakeName.Text = cake.Name;
-                    txtId.Text = cake.Id;
+                    //txtId.Text = cake.Id;
                     txtPrice.Text = cake.Price.ToString();
                     txtDescription.Text = cake.Description;
 
@@ -139,6 +140,58 @@ namespace DA3_ShopCake.Screens
                     cakeImages.Add(newCakeImage);
                 }
             }
+        }
+
+        private void TextBoxCakeName_GotFocus(object sender, RoutedEventArgs e)
+        {
+            keyWordCakeName.Visibility = Visibility.Hidden;
+        }
+
+        private void TextBoxCakeName_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtCakeName.Text.Length == 0)
+            {
+                keyWordCakeName.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void TextBoxPrice_GotFocus(object sender, RoutedEventArgs e)
+        {
+            keyWordPrice.Visibility = Visibility.Hidden;
+        }
+
+        private void TextBoxPrice_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtPrice.Text.Length == 0)
+            {
+                keyWordPrice.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void TextBoxDescription_GotFocus(object sender, RoutedEventArgs e)
+        {
+            keyWordDescription.Visibility = Visibility.Hidden;
+        }
+
+        private void TextBoxDescription_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtDescription.Text.Length == 0)
+            {
+                keyWordDescription.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            keyWordCakeName.Visibility = Visibility.Hidden;
+            keyWordPrice.Visibility = Visibility.Hidden;
+            keyWordDescription.Visibility = Visibility.Hidden;
         }
     }
 }

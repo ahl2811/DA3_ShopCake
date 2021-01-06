@@ -54,7 +54,7 @@ namespace DA3_ShopCake.Screens
         private void setUpUI(List<KeyValuePair<String, int>> selectedPurchases)
         {
             txtBillId.Text = newBill.Id;
-            txtCustomorId.Text = newCustomer.Id;
+            txtCustomerId.Text = newCustomer.Id;
 
             DateTime now = DateTime.Now;
             txtSaleDate.Text = now.ToString();
@@ -104,6 +104,33 @@ namespace DA3_ShopCake.Screens
 
             SubmitHandler?.Invoke();
         }
+
+        private void TextBoxCustomer_GotFocus(object sender, RoutedEventArgs e)
+        {
+            keyWordCustomer.Visibility = Visibility.Hidden;
+        }
+
+        private void TextBoxCustomer_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtCustomerName.Text.Length == 0)
+            {
+                keyWordCustomer.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void TextBoxPhone_GotFocus(object sender, RoutedEventArgs e)
+        {
+            keyWordPhone.Visibility = Visibility.Hidden;
+        }
+
+        private void TextBoxPhone_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtPhone.Text.Length == 0)
+            {
+                keyWordPhone.Visibility = Visibility.Visible;
+            }
+        }
+
     }
 
     class Item

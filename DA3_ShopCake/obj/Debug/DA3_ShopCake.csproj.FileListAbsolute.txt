@@ -31,3 +31,36 @@ D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_
 D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_ShopCake\DA3_ShopCake\obj\Debug\DA3_ShopCake.csprojAssemblyReference.cache
 D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Screens\SplashScreen.g.cs
 D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Screens\SplashScreen.baml
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\DA3_ShopCake.csprojAssemblyReference.cache
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Assets\icons.baml
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Dashboard.g.cs
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Screens\CakeDetailScreen.g.cs
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Screens\CakeScreen.g.cs
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Screens\CreatingBillScreen.g.cs
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Screens\HistoryScreen.g.cs
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Screens\SplashScreen.g.cs
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Screens\StatisticScreen.g.cs
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Screens\UpdatingScreen.g.cs
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\App.g.cs
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\DA3_ShopCake_MarkupCompile.cache
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\DA3_ShopCake_MarkupCompile.lref
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\DA3_ShopCake.exe
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\DA3_ShopCake.pdb
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\bin\Debug\DA3_ShopCake.exe.config
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\bin\Debug\DA3_ShopCake.exe
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\bin\Debug\DA3_ShopCake.pdb
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Screens\NewAddingScreen.g.cs
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\App.baml
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Dashboard.baml
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Screens\CakeDetailScreen.baml
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Screens\CakeScreen.baml
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Screens\CreatingBillScreen.baml
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Screens\HistoryScreen.baml
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Screens\NewAddingScreen.baml
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Screens\SplashScreen.baml
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Screens\StatisticScreen.baml
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\Screens\UpdatingScreen.baml
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\DA3_ShopCake.g.resources
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\DA3_ShopCake.Properties.Resources.resources
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\DA3_ShopCake.csproj.GenerateResource.cache
+D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\DA3_ShopCake.csproj.CoreCompileInputs.cache

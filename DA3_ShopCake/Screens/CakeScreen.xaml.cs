@@ -35,32 +35,6 @@ namespace DA3_ShopCake.Screens
             CakeListView.ItemsSource = cakeVM.cakeList;
         }
 
-        //Test
-        
-        //private void GetCateName(int cakeType)
-        //{
-        //    switch (cakeType)
-        //    {
-        //        case (int)CakeType.BirthdayCake:
-        //            CateName.Text = "BirthDayCake";
-        //            break;
-
-        //        case (int)CakeType.Bread:
-        //            CateName.Text = "Bread";
-        //            break;
-
-        //        case (int)CakeType.SlicedBread:
-        //            CateName.Text = "SlicedBread";
-        //            break;
-
-        //        case (int)CakeType.CupCake:
-        //            CateName.Text = "CupCake";
-        //            break;
-        //        default:
-        //            break;
-        //    }
-        //}
-
         private void LearnMoreButton_Click(object sender, RoutedEventArgs e)
         {
             Button sd = sender as Button;

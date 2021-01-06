@@ -23,4 +23,18 @@ namespace ConsoleApp2.db
             //do nothing
         }
     }
+
+    class TotalRevunue
+    {
+        public String CatalogueName { get; set; }
+        public int Sale { get; set; }
+
+        public TotalRevunue() { }
+        public TotalRevunue(String loai, int tongtien)
+        {
+            this.CatalogueName = loai;
+            this.Sale = tongtien;
+        }
+    }
+
 }

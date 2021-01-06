@@ -64,3 +64,10 @@ D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\DA3_ShopCake.g.resourc
 D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\DA3_ShopCake.Properties.Resources.resources
 D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\DA3_ShopCake.csproj.GenerateResource.cache
 D:\Nam3\00_Window\DA3\DA3_ShopCake\DA3_ShopCake\obj\Debug\DA3_ShopCake.csproj.CoreCompileInputs.cache
+D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_ShopCake\DA3_ShopCake\bin\Debug\LiveCharts.dll
+D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_ShopCake\DA3_ShopCake\bin\Debug\LiveCharts.Wpf.dll
+D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_ShopCake\DA3_ShopCake\bin\Debug\LiveCharts.pdb
+D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_ShopCake\DA3_ShopCake\bin\Debug\LiveCharts.xml
+D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_ShopCake\DA3_ShopCake\bin\Debug\LiveCharts.Wpf.pdb
+D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_ShopCake\DA3_ShopCake\bin\Debug\LiveCharts.Wpf.xml
+D:\4. Tài Liệu Học\2. Lập Trình Windows\5. Đồ Án\3. Đồ Án 3\DA3_ShopCake\DA3_ShopCake\obj\Debug\DA3_ShopCake.csproj.CopyComplete

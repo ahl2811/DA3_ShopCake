@@ -20,7 +20,7 @@ namespace ConsoleApp2.db
             SqlConnection sqlConnection = new SqlConnection(strConn);
             SqlCommand sqlCommand = new SqlCommand();
             String query = "select * from CATALOGUE";
-            
+
             try
             {
                 sqlCommand.CommandText = query;
@@ -56,6 +56,77 @@ namespace ConsoleApp2.db
         public List<Catalogue> GetCatalogues()
         {
             return catalogues;
+        }
+
+        private List<TotalRevunue> cats;
+        public List<TotalRevunue> GetTotalRevunues()
+        {
+            cats = new List<TotalRevunue>();
+
+            string strConn = $"Server=localhost; Database=QLTiemBanh; Trusted_Connection=True;";
+            SqlConnection sqlConnection = new SqlConnection(strConn);
+            SqlCommand sqlCommand = new SqlCommand();
+            String query = "select CATALOGUE.CATALOGUE_NAME, sum(A.TIEN) from (select CAKE.CAKE_ID, CAKE.CAKE_NAME, CAKE.CATALOGUE_ID, sum(DETAIL_BILL.COUNT)*CAKE.PRICE as TIEN FROM CAKE  join DETAIL_BILL on DETAIL_BILL.CAKE_ID = CAKE.CAKE_ID group by CAKE.CAKE_ID, CAKE.PRICE, CAKE.CAKE_NAME, CAKE.CATALOGUE_ID) as A join CATALOGUE on A.CATALOGUE_ID = CATALOGUE.ID group by CATALOGUE.CATALOGUE_NAME";
+
+            try
+            {
+                sqlCommand.CommandText = query;
+                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.Connection = sqlConnection;
+
+                sqlConnection.Open();
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    TotalRevunue totalRevunue = new TotalRevunue(reader[0].ToString(), Int32.Parse(reader[1].ToString()));
+                    cats.Add(totalRevunue);
+                }
+                sqlConnection.Close();
+
+            }
+            catch (Exception ex)
+            {
+                sqlConnection.Close();
+                throw ex;
+            }
+
+            return cats;
+        }
+
+        public List<TotalRevunue> GetTotalRevunuesByMonth(string month)
+        {
+            cats = new List<TotalRevunue>();
+
+            string strConn = $"Server=localhost; Database=QLTiemBanh; Trusted_Connection=True;";
+            SqlConnection sqlConnection = new SqlConnection(strConn);
+            SqlCommand sqlCommand = new SqlCommand();
+            String query = $"select CATALOGUE.CATALOGUE_NAME, sum(A.TIEN) from(select CAKE.CAKE_ID, CAKE.CAKE_NAME, CAKE.CATALOGUE_ID, sum(D.COUNT) * CAKE.PRICE as TIEN FROM CAKE  join (select BILL.BILL_ID, BILL.CUSTOMER_ID, BILL.SALE_DATE, DETAIL_BILL.CAKE_ID, DETAIL_BILL.COUNT from BILL join DETAIL_BILL on BILL.BILL_ID = DETAIL_BILL.BILL_ID where SALE_DATE like '%/{month}/%') as D on D.CAKE_ID = CAKE.CAKE_ID group by CAKE.CAKE_ID, CAKE.PRICE, CAKE.CAKE_NAME, CAKE.CATALOGUE_ID) as A right outer join CATALOGUE on A.CATALOGUE_ID = CATALOGUE.ID group by CATALOGUE.CATALOGUE_NAME";
+
+            try
+            {
+                sqlCommand.CommandText = query;
+                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.Connection = sqlConnection;
+
+                sqlConnection.Open();
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    int b = 0;
+                    if (reader[1] == null || reader[1].ToString() == "") { b = 0; } else { b = Int32.Parse(reader[1].ToString()); }
+                    TotalRevunue totalRevunue = new TotalRevunue(reader[0].ToString(), b);
+                    cats.Add(totalRevunue);
+                }
+                sqlConnection.Close();
+
+            }
+            catch (Exception ex)
+            {
+                sqlConnection.Close();
+                throw ex;
+            }
+
+            return cats;
         }
 
         public void insertCatalogue(Catalogue catalogue)

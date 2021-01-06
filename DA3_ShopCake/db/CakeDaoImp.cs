@@ -12,14 +12,14 @@ namespace ConsoleApp2.db
 {
     class CakeDaoImp : CakeDao
     {
-        
+
         private List<Cake> cakes;
 
         public CakeDaoImp()
         {
             cakes = new List<Cake>();
 
-            string strConn = $"Server=localhost; Database=QLTiemBanh; Trusted_Connection=True; user id=xyz; password=abc";
+            string strConn = $"Server=localhost; Database=QLTiemBanh; Trusted_Connection=True;";
             SqlConnection sqlConnection = new SqlConnection(strConn);
             SqlCommand sqlCommand = new SqlCommand();
             String query = "select A.CAKE_ID, B.CATALOGUE_ID, B.CAKE_NAME, B.PRICE, B.DESCRIPTION, A.IMAGE from CAKEIMAGE as A join CAKE as B on A.CAKE_ID = B.CAKE_ID where A.IMAGE = (select top(1) IMAGE from CAKEIMAGE where CAKE_ID = B.CAKE_ID)";
@@ -32,7 +32,6 @@ namespace ConsoleApp2.db
 
                 sqlConnection.Open();
                 SqlDataReader reader = sqlCommand.ExecuteReader();
-
                 while (reader.Read())
                 {
                     Cake cake = new Cake();
@@ -187,12 +186,12 @@ CAKE: CAKE_ID (PK), CATALOGUE_ID (FK), CAKE_NAME, PRICE (INT), IMAGE (TEXT)
         public List<Cake> GetCakesByType(int type)
         {
             List<Cake> rs = new List<Cake>();
-            foreach(Cake c in cakes)
+            foreach (Cake c in cakes)
             {
                 int num;
                 bool success = Int32.TryParse(c.CatalogueId, out num);
 
-                if(success && num == type)
+                if (success && num == type)
                 {
                     rs.Add(c);
                 }
